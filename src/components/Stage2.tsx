@@ -7,7 +7,6 @@ import {
   Input,
   Select,
 } from "@cloudscape-design/components";
-import React from "react";
 
 const Stage2 = () => {
   return (

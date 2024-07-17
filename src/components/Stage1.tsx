@@ -6,7 +6,6 @@ import {
 } from "@cloudscape-design/components";
 import Container from "@cloudscape-design/components/container";
 import Header from "@cloudscape-design/components/header";
-import "@cloudscape-design/global-styles/index.css";
 
 const Stage1 = () => {
   return (
