@@ -1,0 +1,57 @@
+/* Stuff for Hero Div*/
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto
+  }
+
+  .left-content, .right-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.hero-div {
+    background-color: #000716;
+    opacity: 98%;
+    padding: 20px;
+    
+}
+.hero-img {
+width: 80%; 
+  max-width: 600px; 
+  height: auto; 
+}
+
+
+
+.title-text {
+    font-family: 'Open Sans', sans-serif;
+    size: 20px;
+    color: white;
+    text-align: center;
+}
+.body-text {
+    font-family: 'Open Sans', sans-serif;
+    size: 10px;
+    color: white;
+    text-align: center;
+}
+
+/* Media Query to hide one of the containers */
+@media (max-width: 768px) {
+    .left-content {
+      display: none;
+    }
+  
+    .container {
+      grid-template-columns: 1fr;
+    }
+
+    .right-content {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+  }
