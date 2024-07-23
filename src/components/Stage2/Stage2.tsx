@@ -7,25 +7,27 @@ import {
   Input,
   Select,
 } from "@cloudscape-design/components";
+import { useState } from "react";
 
 const Stage2 = () => {
+  const [items, setItems] = useState([]);
+
+  const addNewItem = () => {
+    const newItem = {
+      user: `User ${items.length + 1}`,
+      device: "-",
+      activity1: "-",
+      activity2: "-",
+      activity3: "-",
+    };
+  };
   return (
     <Table
-      renderAriaLive={({ firstIndex, lastIndex, totalItemsCount }) =>
-        `Displaying items ${firstIndex} to ${lastIndex} of ${totalItemsCount}`
-      }
-      ariaLabels={{
-        activateEditLabel: (column, item) =>
-          `Edit ${item.name} ${column.header}`,
-        cancelEditLabel: (column) => `Cancel editing ${column.header}`,
-        submitEditLabel: (column) => `Submit editing ${column.header}`,
-        tableLabel: "Table with inline editing",
-      }}
       columnDefinitions={[
         {
-          id: "variable",
-          header: "Variable name",
-          minWidth: 176,
+          id: "user",
+          header: "User",
+          maxWidth: 150,
           cell: (item) => {
             return item.name;
           },
@@ -43,23 +45,20 @@ const Stage2 = () => {
                 />
               );
             },
-            disabledReason: (item) => {
-              if (item.type === "1A") {
-                return "You cannot change the name of Type 1A variables.";
-              }
-              return undefined;
-            },
           },
         },
         {
-          id: "type",
-          header: "Type",
-          minWidth: 176,
+          id: "device",
+          header: "Device",
+          maxWidth: 150,
+          cell: (item) => {
+            return item.device;
+          },
           editConfig: {
             ariaLabel: "Type",
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
-              const value = currentValue ?? item.type;
+              const value = currentValue ?? item.device;
               return (
                 <Select
                   autoFocus={true}
@@ -73,7 +72,7 @@ const Stage2 = () => {
                     ].find((option) => option.value === value) ?? null
                   }
                   onChange={(event) => {
-                    setValue(event.detail.selectedOption.value ?? item.type);
+                    setValue(event.detail.selectedOption.value ?? item.device);
                   }}
                   options={[
                     { label: "1A", value: "1A" },
@@ -85,59 +84,34 @@ const Stage2 = () => {
               );
             },
           },
-          cell: (item) => {
-            return item.type;
-          },
         },
         {
-          id: "description",
-          header: "Description",
-          cell: (e) => e.description,
+          id: "activity1",
+          header: "Activity 1",
+          maxWidth: 150,
+          cell: (e) => e.activity1,
+        },
+        {
+          id: "activity2",
+          header: "Activity 2",
+          maxWidth: 150,
+          cell: (e) => e.activity2,
+        },
+        {
+          id: "activity3",
+          header: "Activity 3",
+          maxWidth: 150,
+          cell: (e) => e.activity3,
         },
       ]}
       enableKeyboardNavigation
       items={[
         {
-          name: "Item 1",
-          alt: "First",
-          description: "This is the first item",
-          type: "1A",
-          size: "Small",
-        },
-        {
-          name: "Item 2",
-          alt: "Second",
-          description: "This is the second item",
-          type: "1B",
-          size: "Large",
-        },
-        {
-          name: "Item 3",
-          alt: "Third",
-          description: "-",
-          type: "1A",
-          size: "Large",
-        },
-        {
-          name: "Item 4",
-          alt: "Fourth",
-          description: "This is the fourth item",
-          type: "2A",
-          size: "Small",
-        },
-        {
-          name: "Item 5",
-          alt: "-",
-          description: "This is the fifth item with a longer description",
-          type: "2A",
-          size: "Large",
-        },
-        {
-          name: "Item 6",
-          alt: "Sixth",
-          description: "This is the sixth item",
-          type: "1A",
-          size: "Small",
+          name: "John",
+          device: "TV",
+          activity1: "4K Streaming",
+          activity2: "-",
+          activity3: "-",
         },
       ]}
       loadingText="Loading resources"
@@ -153,10 +127,15 @@ const Stage2 = () => {
         </Box>
       }
       header={
-        <Header>
-          <SpaceBetween direction="horizontal" size="xxl">
+        <Header
+          variant="h1"
+          description="Input the typical usage your household mught have during peak times"
+        >
+          <SpaceBetween direction="vertical" size="s">
             2. Calculate your HouseHold usage
-            <Button variant="primary">Create resource</Button>
+            <Button iconName="add-plus" variant="primary">
+              Add Device
+            </Button>
           </SpaceBetween>
         </Header>
       }

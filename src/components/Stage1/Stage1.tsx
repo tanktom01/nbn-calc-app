@@ -1,24 +1,32 @@
 import { useState } from "react";
 import Cards from "@cloudscape-design/components/cards";
-import Box from "@cloudscape-design/components/box";
-import SpaceBetween from "@cloudscape-design/components/space-between";
-import Button from "@cloudscape-design/components/button";
-// import TextFilter from "@cloudscape-design/components/text-filter";
-import Header from "@cloudscape-design/components/header";
-import Pagination from "@cloudscape-design/components/pagination";
-import CollectionPreferences from "@cloudscape-design/components/collection-preferences";
-import { Container, Link } from "@cloudscape-design/components";
-import { CARD_DATA } from "./Card-config";
+import { Container, Header } from "@cloudscape-design/components";
+import { CARD_DATA, item } from "./Card-config";
 
 const Stage1 = () => {
+  const [selectedItems, setSelectedItems] = useState([{ name: "Basic" }]);
   return (
-    <Container>
+    <Container
+      header={
+        <Header
+          variant="h1"
+          description="Pick the plan that is closest to your current internet plan"
+        >
+          1. Select your current Broadband Plan
+        </Header>
+      }
+    >
       <Cards
         entireCardClickable={true}
         cardDefinition={CARD_DATA}
         variant="full-page"
         selectionType="single"
-        items={[CARD_DATA]}
+        selectedItems={selectedItems}
+        onSelectionChange={({ detail }) =>
+          setSelectedItems(detail?.selectedItems ?? [])
+        }
+        visibleSections={["download", "upload"]}
+        items={item}
       />
     </Container>
   );
