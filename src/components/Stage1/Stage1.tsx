@@ -5,6 +5,7 @@ import { CARD_DATA, item } from "./Card-config";
 
 const Stage1 = () => {
   const [selectedItems, setSelectedItems] = useState([{ name: "Basic" }]);
+  console.log(selectedItems);
   return (
     <Container
       header={

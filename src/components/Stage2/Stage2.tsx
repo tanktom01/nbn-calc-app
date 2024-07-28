@@ -6,42 +6,63 @@ import {
   Header,
   Input,
   Select,
+  Container,
+  ColumnLayout,
 } from "@cloudscape-design/components";
 import { useState } from "react";
+import { deviceTypes, tableOptions } from "./Table-config";
 
 const Stage2 = () => {
-  const [items, setItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([
+    {
+      name: "John",
+      device: "TV",
+      activity1: "Video Streaming 4K",
+      activity2: "-",
+      activity3: "-",
+    },
+  ]);
 
-  const addNewItem = () => {
-    const newItem = {
-      user: `User ${items.length + 1}`,
-      device: "-",
-      activity1: "-",
+  const handleSubmit = async (currentItem, column, value) => {
+    const newItem = { ...currentItem, [column.id]: value };
+    const handleSelect = selectedItems.map((item) =>
+      item === currentItem ? newItem : item
+    );
+    setSelectedItems(handleSelect);
+  };
+
+  const handleCreateUser = () => {
+    const newUser = {
+      name: "John",
+      device: "TV",
+      activity1: "Video Streaming 4K",
       activity2: "-",
       activity3: "-",
     };
+    selectedItems.push(newUser);
+    setSelectedItems([...selectedItems]);
   };
+
   return (
     <Table
+      items={selectedItems}
+      submitEdit={handleSubmit}
       columnDefinitions={[
         {
-          id: "user",
-          header: "User",
-          maxWidth: 150,
-          cell: (item) => {
-            return item.name;
-          },
-          isRowHeader: true,
+          id: "name",
+          header: "User Name",
+          cell: (item) => item.name,
+          minWidth: 100,
           editConfig: {
-            ariaLabel: "Name",
             editIconAriaLabel: "editable",
-            errorIconAriaLabel: "Name Error",
             editingCell: (item, { currentValue, setValue }) => {
               return (
                 <Input
                   autoFocus={true}
                   value={currentValue ?? item.name}
-                  onChange={(event) => setValue(event.detail.value)}
+                  onChange={(event) => {
+                    setValue(event.detail.value);
+                  }}
                 />
               );
             },
@@ -50,36 +71,24 @@ const Stage2 = () => {
         {
           id: "device",
           header: "Device",
-          maxWidth: 150,
-          cell: (item) => {
-            return item.device;
-          },
+          cell: (item) => item.device,
+          minWidth: 100,
           editConfig: {
-            ariaLabel: "Type",
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
               const value = currentValue ?? item.device;
+              //console.log(deviceItems);
               return (
                 <Select
                   autoFocus={true}
                   expandToViewport={true}
                   selectedOption={
-                    [
-                      { label: "1A", value: "1A" },
-                      { label: "1B", value: "1B" },
-                      { label: "2A", value: "2A" },
-                      { label: "2B", value: "2B" },
-                    ].find((option) => option.value === value) ?? null
+                    deviceTypes.find((option) => option.label === value) ?? null
                   }
                   onChange={(event) => {
-                    setValue(event.detail.selectedOption.value ?? item.device);
+                    setValue(event.detail.selectedOption?.label ?? item.device);
                   }}
-                  options={[
-                    { label: "1A", value: "1A" },
-                    { label: "1B", value: "1B" },
-                    { label: "2A", value: "2A" },
-                    { label: "2B", value: "2B" },
-                  ]}
+                  options={deviceTypes}
                 />
               );
             },
@@ -88,57 +97,112 @@ const Stage2 = () => {
         {
           id: "activity1",
           header: "Activity 1",
-          maxWidth: 150,
-          cell: (e) => e.activity1,
+          cell: (item) => item.activity1,
+          minWidth: 100,
+          editConfig: {
+            editIconAriaLabel: "editable",
+            editingCell: (item, { currentValue, setValue }) => {
+              const value = currentValue ?? item.activity1;
+              //console.log(deviceItems);
+              return (
+                <Select
+                  autoFocus={true}
+                  expandToViewport={true}
+                  selectedOption={
+                    tableOptions.find((option) => option.label === value) ??
+                    null
+                  }
+                  onChange={(event) => {
+                    setValue(
+                      event.detail.selectedOption?.label ?? item.activity1
+                    );
+                  }}
+                  options={tableOptions}
+                />
+              );
+            },
+          },
         },
         {
           id: "activity2",
           header: "Activity 2",
-          maxWidth: 150,
-          cell: (e) => e.activity2,
+          cell: (item) => item.activity2,
+          minWidth: 100,
+          editConfig: {
+            editIconAriaLabel: "editable",
+            editingCell: (item, { currentValue, setValue }) => {
+              const value = currentValue ?? item.activity2;
+              //console.log(deviceItems);
+              return (
+                <Select
+                  autoFocus={true}
+                  expandToViewport={true}
+                  selectedOption={
+                    tableOptions.find((option) => option.label === value) ??
+                    null
+                  }
+                  onChange={(event) => {
+                    setValue(
+                      event.detail.selectedOption?.label ?? item.activity2
+                    );
+                  }}
+                  options={tableOptions}
+                />
+              );
+            },
+          },
         },
         {
           id: "activity3",
           header: "Activity 3",
-          maxWidth: 150,
-          cell: (e) => e.activity3,
+          cell: (item) => item.activity3,
+          minWidth: 100,
+          editConfig: {
+            editIconAriaLabel: "editable",
+            editingCell: (item, { currentValue, setValue }) => {
+              const value = currentValue ?? item.activity3;
+              //console.log(deviceItems);
+              return (
+                <Select
+                  autoFocus={true}
+                  expandToViewport={true}
+                  selectedOption={
+                    tableOptions.find((option) => option.label === value) ??
+                    null
+                  }
+                  onChange={(event) => {
+                    setValue(
+                      event.detail.selectedOption?.label ?? item.activity3
+                    );
+                  }}
+                  options={tableOptions}
+                />
+              );
+            },
+          },
         },
       ]}
-      enableKeyboardNavigation
-      items={[
-        {
-          name: "John",
-          device: "TV",
-          activity1: "4K Streaming",
-          activity2: "-",
-          activity3: "-",
-        },
-      ]}
-      loadingText="Loading resources"
-      submitEdit={async () => {
-        await new Promise((e) => setTimeout(e, 1e3));
-      }}
-      empty={
-        <Box margin={{ vertical: "xs" }} textAlign="center" color="inherit">
-          <SpaceBetween size="m">
-            <b>No resources</b>
-            <Button>Create resource</Button>
-          </SpaceBetween>
-        </Box>
-      }
       header={
         <Header
-          variant="h1"
           description="Input the typical usage your household mught have during peak times"
+          actions={
+            <SpaceBetween direction="horizontal" size="xs">
+              <Button
+                onClick={() => {
+                  handleCreateUser();
+                }}
+                iconName="add-plus"
+                variant="primary"
+              >
+                Create User
+              </Button>
+            </SpaceBetween>
+          }
         >
-          <SpaceBetween direction="vertical" size="s">
-            2. Calculate your HouseHold usage
-            <Button iconName="add-plus" variant="primary">
-              Add Device
-            </Button>
-          </SpaceBetween>
+          2. Calculate your HouseHold usage
         </Header>
       }
+      //submitEdit={handleChange}
     />
   );
 };
