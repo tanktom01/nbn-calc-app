@@ -1,13 +1,10 @@
 import {
   Table,
-  Box,
   SpaceBetween,
   Button,
   Header,
   Input,
   Select,
-  Container,
-  ColumnLayout,
 } from "@cloudscape-design/components";
 import { useState } from "react";
 import { deviceTypes, tableOptions } from "./Table-config";
@@ -202,7 +199,6 @@ const Stage2 = () => {
           2. Calculate your HouseHold usage
         </Header>
       }
-      //submitEdit={handleChange}
     />
   );
 };

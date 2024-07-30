@@ -22,7 +22,10 @@ export const tableOptions = [
   { label: "Video Streaming SD", value: "12" },
   { label: "Video Streaming HD", value: "13" },
   { label: "Video Streaming 4K", value: "14" },
-  { label: "Smart Home Gadgets", value: "15" },
+  { label: "Live Streaming SD", value: "15" },
+  { label: "Live Streaming HD", value: "16" },
+  { label: "Live Streaming 4K", value: "17" },
+  { label: "Smart Home Gadgets", value: "18" },
 ];
 // KEY VALUES
 // 1 = -
