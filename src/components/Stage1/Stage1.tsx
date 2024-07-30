@@ -1,11 +1,8 @@
-import { useState } from "react";
 import Cards from "@cloudscape-design/components/cards";
 import { Container, Header } from "@cloudscape-design/components";
 import { CARD_DATA, item } from "./Card-config";
 
-const Stage1 = () => {
-  const [selectedItems, setSelectedItems] = useState([{ name: "Basic" }]);
-  //console.log(selectedItems);
+const Stage1 = ({ selectedItems, handleSelectionChange }) => {
   return (
     <Container
       header={
@@ -23,9 +20,7 @@ const Stage1 = () => {
         variant="full-page"
         selectionType="single"
         selectedItems={selectedItems}
-        onSelectionChange={({ detail }) =>
-          setSelectedItems(detail?.selectedItems ?? [])
-        }
+        onSelectionChange={handleSelectionChange}
         visibleSections={["download", "upload"]}
         items={item}
       />

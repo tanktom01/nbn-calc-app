@@ -6,40 +6,10 @@ import {
   Input,
   Select,
 } from "@cloudscape-design/components";
-import { useState } from "react";
+
 import { deviceTypes, tableOptions } from "./Table-config";
 
-const Stage2 = () => {
-  const [selectedItems, setSelectedItems] = useState([
-    {
-      name: "John",
-      device: "TV",
-      activity1: "Video Streaming 4K",
-      activity2: "-",
-      activity3: "-",
-    },
-  ]);
-
-  const handleSubmit = async (currentItem, column, value) => {
-    const newItem = { ...currentItem, [column.id]: value };
-    const handleSelect = selectedItems.map((item) =>
-      item === currentItem ? newItem : item
-    );
-    setSelectedItems(handleSelect);
-  };
-
-  const handleCreateUser = () => {
-    const newUser = {
-      name: "John",
-      device: "TV",
-      activity1: "Video Streaming 4K",
-      activity2: "-",
-      activity3: "-",
-    };
-    selectedItems.push(newUser);
-    setSelectedItems([...selectedItems]);
-  };
-
+const Stage2 = ({ selectedItems, handleSubmit, handleCreateUser }) => {
   return (
     <Table
       items={selectedItems}

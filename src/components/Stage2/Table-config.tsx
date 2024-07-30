@@ -22,10 +22,10 @@ export const tableOptions = [
   { label: "Video Streaming SD", value: "12" },
   { label: "Video Streaming HD", value: "13" },
   { label: "Video Streaming 4K", value: "14" },
-  { label: "Live Streaming SD", value: "15" },
-  { label: "Live Streaming HD", value: "16" },
-  { label: "Live Streaming 4K", value: "17" },
-  { label: "Smart Home Gadgets", value: "18" },
+  { label: "Smart Home Gadgets", value: "15" },
+  { label: "Live Streaming SD", value: "16" },
+  { label: "Live Streaming HD", value: "17" },
+  { label: "Live Streaming 4K", value: "18" },
 ];
 // KEY VALUES
 // 1 = -
@@ -43,21 +43,27 @@ export const tableOptions = [
 // 13 Video Streaming HD
 // 14 Video Streaming 4k
 // 15 Smart Home Gadgets
+// 16 Live Streaming SD
+// 17 Live Streaming HD
+// 18 Live Streaming 4k
 
 export const keyTable = [
-  { key: 1, download: 0, upload: 0 },
-  { key: 2, download: 3, upload: 1.5 },
-  { key: "Emailing", download: 0.5, upload: 0.5 },
-  { key: "Music", download: 0.3, upload: 0 },
-  { key: "Social Media", download: 3, upload: 1 },
-  { key: "Gaming", download: 10, upload: 5 },
-  { key: "Navigation", download: 1, upload: 1 },
-  { key: "Education", download: 10, upload: 0 },
-  { key: "Education", download: 10, upload: 0 },
-  { key: "Video Meetings SD", download: 3, upload: 3 },
-  { key: "Video Meetings HD", download: 10, upload: 10 },
-  { key: "Video Streaming SD", download: 3, upload: 0 },
-  { key: "Video Streaming HD", download: 10, upload: 0 },
-  { key: "Video Streaming 4K", download: 25, upload: 0 },
-  { key: "Smart Home Gadgets", download: 2, upload: 2 },
+  { key: "1", download: 0, upload: 0 },
+  { key: "2", download: 3, upload: 1.5 },
+  { key: "3", download: 0.5, upload: 0.5 },
+  { key: "4", download: 0.3, upload: 0 },
+  { key: "5", download: 3, upload: 1 },
+  { key: "6", download: 10, upload: 5 },
+  { key: "7", download: 1, upload: 1 },
+  { key: "8", download: 3, upload: 0 },
+  { key: "9", download: 10, upload: 0 },
+  { key: "10", download: 3, upload: 3 },
+  { key: "11", download: 10, upload: 10 },
+  { key: "12", download: 3, upload: 0 },
+  { key: "13", download: 10, upload: 0 },
+  { key: "14", download: 25, upload: 0 },
+  { key: "15", download: 2, upload: 2 },
+  { key: "16", download: 0, upload: 3 },
+  { key: "17", download: 0, upload: 10 },
+  { key: "18", download: 0, upload: 25 },
 ];
