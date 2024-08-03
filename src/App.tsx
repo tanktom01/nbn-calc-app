@@ -7,6 +7,8 @@ import Stage3 from "./components/Stage3/Stage3";
 import Hero from "./components/Hero";
 import { useState } from "react";
 import { keyTable, tableOptions } from "./components/Stage2/Table-config";
+import IndividualUserTable from "./components/Stage3/Widgets/IndividualUserTable";
+import PeakUsageBarGraph from "./components/Stage3/Widgets/PeakUsageBarGraph/PeakUsageBarGraph";
 
 function App() {
   // Stage 1 State + Handle
@@ -97,6 +99,8 @@ function App() {
         handleCreateUser={handleCreateUser}
       />
       <Stage3 />
+      <IndividualUserTable metrics={transformedMetricValues} />
+      <PeakUsageBarGraph metrics={transformedMetricValues} />
     </>
   );
 }
