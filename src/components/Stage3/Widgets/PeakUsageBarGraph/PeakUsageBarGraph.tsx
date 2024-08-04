@@ -238,6 +238,7 @@ const PeakUsageBarGraph = ({ metrics }) => {
       ]}
       xDomain={["Download", "Upload"]}
       yDomain={[0, 200]}
+      // TODO Add a function that will auto adjust the domain based on selected plan
       detailPopoverSeriesContent={({ series, x, y }) => {
         return {
           key: series.title,
@@ -375,7 +376,7 @@ const PeakUsageBarGraph = ({ metrics }) => {
       fitHeight
       height={300}
       horizontalBars
-      //stackedBars
+      stackedBars
       xTitle="Usage Type"
       empty={
         <Box textAlign="center" color="inherit">
