@@ -1,5 +1,4 @@
 import { BarChart, Box, Button, Link } from "@cloudscape-design/components";
-import { initializeActivityTotals, calculateActivityTotals } from "./config";
 
 const PeakUsageBarGraph = ({ metrics }) => {
   if (!Array.isArray(metrics)) {
@@ -8,18 +7,27 @@ const PeakUsageBarGraph = ({ metrics }) => {
     return []; // or handle this case as needed
   }
 
-  //TODO get rid of this fucking hideous shit to another random file
-  // so i dont have to look at it
-
-  // MOVIES (DOWN)
+  // MOVIES
   const mdActivityTotals = { 12: 0, 13: 0, 14: 0 };
   const muActivityTotals = { 12: 0, 13: 0, 14: 0 };
+  // LIVE STREAMING
   const lsdActivityTotals = { 16: 0, 17: 0, 18: 0 };
   const lsuActivityTotals = { 16: 0, 17: 0, 18: 0 };
+  // EDUCATION
   const edActivityTotals = { 8: 0, 9: 0 };
   const euActivityTotals = { 8: 0, 9: 0 };
+  // WORK
   const wdActivityTotals = { 10: 0, 11: 0 };
   const wuActivityTotals = { 10: 0, 11: 0 };
+  // GAMING
+  const gdActivityTotals = { 6: 0 };
+  const guActivityTotals = { 6: 0 };
+  // SOCIAL MEDIA
+  const smdActivityTotals = { 5: 0 };
+  const smuActivityTotals = { 5: 0 };
+  // OTHER
+  const odActivityTotals = { 2: 0, 3: 0, 4: 0, 7: 0, 15: 0 };
+  const ouActivityTotals = { 2: 0, 3: 0, 4: 0, 7: 0, 15: 0 };
 
   metrics.forEach((item) => {
     // Movies (Down/Up)
@@ -85,6 +93,52 @@ const PeakUsageBarGraph = ({ metrics }) => {
         wuActivityTotals[activity] += item.activity3Metrics.upload;
       }
     });
+
+    // Gaming (Down/Up)
+    ["6"].forEach((activity) => {
+      if (item.activity1 === activity) {
+        gdActivityTotals[activity] += item.activity1Metrics.download;
+        guActivityTotals[activity] += item.activity1Metrics.upload;
+      }
+      if (item.activity2 === activity) {
+        gdActivityTotals[activity] += item.activity2Metrics.download;
+        guActivityTotals[activity] += item.activity2Metrics.upload;
+      }
+      if (item.activity3 === activity) {
+        gdActivityTotals[activity] += item.activity3Metrics.download;
+        guActivityTotals[activity] += item.activity3Metrics.upload;
+      }
+    });
+    // Social media (Down/Up)
+    ["5"].forEach((activity) => {
+      if (item.activity1 === activity) {
+        smdActivityTotals[activity] += item.activity1Metrics.download;
+        smuActivityTotals[activity] += item.activity1Metrics.upload;
+      }
+      if (item.activity2 === activity) {
+        smdActivityTotals[activity] += item.activity2Metrics.download;
+        smuActivityTotals[activity] += item.activity2Metrics.upload;
+      }
+      if (item.activity3 === activity) {
+        smdActivityTotals[activity] += item.activity3Metrics.download;
+        smuActivityTotals[activity] += item.activity3Metrics.upload;
+      }
+    });
+    // Other (Down/Up)
+    ["2", "3", "4", "7", "15"].forEach((activity) => {
+      if (item.activity1 === activity) {
+        odActivityTotals[activity] += item.activity1Metrics.download;
+        ouActivityTotals[activity] += item.activity1Metrics.upload;
+      }
+      if (item.activity2 === activity) {
+        odActivityTotals[activity] += item.activity2Metrics.download;
+        ouActivityTotals[activity] += item.activity2Metrics.upload;
+      }
+      if (item.activity3 === activity) {
+        odActivityTotals[activity] += item.activity3Metrics.download;
+        ouActivityTotals[activity] += item.activity3Metrics.upload;
+      }
+    });
   });
 
   const MovieDownTotal =
@@ -99,7 +153,22 @@ const PeakUsageBarGraph = ({ metrics }) => {
   const EducationUploadTotal = euActivityTotals[8] + euActivityTotals[9];
   const WorkDownTotal = wdActivityTotals[10] + wdActivityTotals[11];
   const WorkUploadTotal = wuActivityTotals[10] + wuActivityTotals[11];
-
+  const GamingDownTotal = gdActivityTotals[6];
+  const GamingUploadTotal = guActivityTotals[6];
+  const SocialDownTotal = smdActivityTotals[5];
+  const SocialUploadTotal = smuActivityTotals[5];
+  const OtherDownTotal =
+    odActivityTotals[2] +
+    odActivityTotals[3] +
+    odActivityTotals[4] +
+    odActivityTotals[7] +
+    odActivityTotals[15];
+  const OtherUploadTotal =
+    ouActivityTotals[2] +
+    ouActivityTotals[3] +
+    ouActivityTotals[4] +
+    ouActivityTotals[7] +
+    ouActivityTotals[15];
   return (
     <BarChart
       series={[
@@ -115,25 +184,25 @@ const PeakUsageBarGraph = ({ metrics }) => {
         {
           title: "Gaming",
           type: "bar",
-          valueFormatter: (e) => `${(100 * e).toFixed(0)}`,
+          valueFormatter: (e) => `${e.toFixed(0)}`,
           data: [
-            { x: "Download", y: 1 },
-            { x: "Upload", y: 1 },
+            { x: "Download", y: GamingDownTotal },
+            { x: "Upload", y: GamingUploadTotal },
           ],
         },
         {
           title: "Social Media",
           type: "bar",
-          valueFormatter: (e) => `${(100 * e).toFixed(0)}`,
+          valueFormatter: (e) => `${e.toFixed(0)}`,
           data: [
-            { x: "Download", y: 1 },
-            { x: "Upload", y: 1 },
+            { x: "Download", y: SocialDownTotal },
+            { x: "Upload", y: SocialUploadTotal },
           ],
         },
         {
           title: "Work",
           type: "bar",
-          valueFormatter: (e) => `${(100 * e).toFixed(0)}`,
+          valueFormatter: (e) => `${e.toFixed(0)}`,
           data: [
             { x: "Download", y: WorkDownTotal },
             { x: "Upload", y: WorkUploadTotal },
@@ -142,7 +211,7 @@ const PeakUsageBarGraph = ({ metrics }) => {
         {
           title: "Education",
           type: "bar",
-          valueFormatter: (e) => `${(100 * e).toFixed(0)}`,
+          valueFormatter: (e) => `${e.toFixed(0)}`,
           data: [
             { x: "Download", y: EducationDownTotal },
             { x: "Upload", y: EducationUploadTotal },
@@ -151,18 +220,24 @@ const PeakUsageBarGraph = ({ metrics }) => {
         {
           title: "Live Streaming",
           type: "bar",
-          valueFormatter: (e) => `${(100 * e).toFixed(0)}`,
+          valueFormatter: (e) => `${e.toFixed(0)}`,
           data: [
             { x: "Download", y: LiveStreamDownTotal },
             { x: "Upload", y: LiveStreamUploadTotal },
           ],
         },
+        {
+          title: "Other",
+          type: "bar",
+          valueFormatter: (e) => `${e.toFixed(0)}`,
+          data: [
+            { x: "Download", y: OtherDownTotal },
+            { x: "Upload", y: OtherUploadTotal },
+          ],
+        },
       ]}
       xDomain={["Download", "Upload"]}
-      yDomain={[0, 2]}
-      i18nStrings={{
-        yTickFormatter: (e) => `${(100 * e).toFixed(0)}`,
-      }}
+      yDomain={[0, 200]}
       detailPopoverSeriesContent={({ series, x, y }) => {
         return {
           key: series.title,
@@ -171,6 +246,7 @@ const PeakUsageBarGraph = ({ metrics }) => {
             series.title === "Movies" ||
             series.title === "Live Streaming" ||
             series.title === "Work" ||
+            series.title === "Other" ||
             series.title === "Education",
           subItems:
             series.title === "Movies"
@@ -201,37 +277,96 @@ const PeakUsageBarGraph = ({ metrics }) => {
               ? [
                   {
                     key: "Live Streaming SD",
-                    value: x === "Download" ? 2 : 3,
+                    value:
+                      x === "Download"
+                        ? lsdActivityTotals[16]
+                        : lsuActivityTotals[16],
                   },
                   {
                     key: "Live Streaming HD",
-                    value: x === "Download" ? 2 : 3,
+                    value:
+                      x === "Download"
+                        ? lsdActivityTotals[17]
+                        : lsuActivityTotals[17],
                   },
                   {
                     key: "Live Streaming 4K",
-                    value: x === "Download" ? 2 : 3,
+                    value:
+                      x === "Download"
+                        ? lsdActivityTotals[18]
+                        : lsuActivityTotals[18],
                   },
                 ]
               : series.title === "Work"
               ? [
                   {
                     key: "Video Meeting SD",
-                    value: x === "Download" ? 2 : 3,
+                    value:
+                      x === "Download"
+                        ? wdActivityTotals[10]
+                        : wuActivityTotals[10],
                   },
                   {
                     key: "Video Meeting HD",
-                    value: x === "Download" ? 2 : 3,
+                    value:
+                      x === "Download"
+                        ? wdActivityTotals[11]
+                        : wuActivityTotals[11],
                   },
                 ]
               : series.title === "Education"
               ? [
                   {
                     key: "Education SD",
-                    value: x === "Download" ? 2 : 3,
+                    value:
+                      x === "Download"
+                        ? edActivityTotals[8]
+                        : euActivityTotals[8],
                   },
                   {
                     key: "Education HD",
-                    value: x === "Download" ? 2 : 3,
+                    value:
+                      x === "Download"
+                        ? edActivityTotals[9]
+                        : euActivityTotals[9],
+                  },
+                ]
+              : series.title === "Other"
+              ? [
+                  {
+                    key: "Browsing",
+                    value:
+                      x === "Download"
+                        ? odActivityTotals[2]
+                        : ouActivityTotals[2],
+                  },
+                  {
+                    key: "Emailing",
+                    value:
+                      x === "Download"
+                        ? odActivityTotals[3]
+                        : ouActivityTotals[3],
+                  },
+                  {
+                    key: "Music",
+                    value:
+                      x === "Download"
+                        ? odActivityTotals[4]
+                        : ouActivityTotals[4],
+                  },
+                  {
+                    key: "Navigation",
+                    value:
+                      x === "Download"
+                        ? odActivityTotals[7]
+                        : ouActivityTotals[7],
+                  },
+                  {
+                    key: "Smart Home Gadgets",
+                    value:
+                      x === "Download"
+                        ? odActivityTotals[15]
+                        : ouActivityTotals[15],
                   },
                 ]
               : undefined,
