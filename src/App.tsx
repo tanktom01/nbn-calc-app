@@ -7,9 +7,6 @@ import Stage3 from "./components/Stage3/Stage3";
 import Hero from "./components/Hero";
 import { useState } from "react";
 import { keyTable, tableOptions } from "./components/Stage2/Table-config";
-import IndividualUserTable from "./components/Stage3/Widgets/IndividualUserTable";
-import PeakUsageBarGraph from "./components/Stage3/Widgets/PeakUsageBarGraph/PeakUsageBarGraph";
-import PlanUtil from "./components/Stage3/Widgets/PlanUtil";
 
 function App() {
   // Stage 1 State + Handle
@@ -21,6 +18,7 @@ function App() {
     setSelectedItemsStage1(detail?.selectedItems ?? []);
   };
   console.log(selectedItemsStage1);
+
   // Stage 2 State + Handles
   const [selectedItemsStage2, setselectedItemsStage2] = useState([
     {
@@ -84,7 +82,6 @@ function App() {
 
   const transformedData = transformUserData(selectedItemsStage2);
   const transformedMetricValues = transformMetricValues(transformedData);
-  //console.log(transformedMetricValues);
 
   return (
     <>
@@ -99,10 +96,7 @@ function App() {
         handleSubmit={handleSubmit}
         handleCreateUser={handleCreateUser}
       />
-      <Stage3 />
-      <IndividualUserTable metrics={transformedMetricValues} />
-      <PeakUsageBarGraph metrics={transformedMetricValues} />
-      <PlanUtil
+      <Stage3
         metrics={transformedMetricValues}
         selectedPlan={selectedItemsStage1}
       />

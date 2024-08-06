@@ -6,7 +6,7 @@ const NavBar = () => {
     <TopNavigation
       identity={{
         href: "#",
-        title: "Service",
+        title: "Usage Calculator",
         logo: {
           src: "/logo-small-top-navigation.svg",
           alt: "Service",

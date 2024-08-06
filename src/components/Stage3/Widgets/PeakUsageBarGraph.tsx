@@ -1,11 +1,15 @@
 import { BarChart, Box, Button, Link } from "@cloudscape-design/components";
 
-const PeakUsageBarGraph = ({ metrics }) => {
+const PeakUsageBarGraph = ({ metrics, selectedPlan }) => {
   if (!Array.isArray(metrics)) {
     console.error("metrics is not an array");
     //console.log(metrics)
     return []; // or handle this case as needed
   }
+  //console.log(selectedPlan);
+  const checkDomainValue = selectedPlan[0];
+  const yDomainValue = checkDomainValue.download * 1.2;
+  //console.log(yDomainValue);
 
   // MOVIES
   const mdActivityTotals = { 12: 0, 13: 0, 14: 0 };
@@ -237,8 +241,7 @@ const PeakUsageBarGraph = ({ metrics }) => {
         },
       ]}
       xDomain={["Download", "Upload"]}
-      yDomain={[0, 200]}
-      // TODO Add a function that will auto adjust the domain based on selected plan
+      yDomain={[0, yDomainValue]}
       detailPopoverSeriesContent={({ series, x, y }) => {
         return {
           key: series.title,

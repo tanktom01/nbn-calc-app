@@ -2,30 +2,80 @@ import * as React from "react";
 import Board from "@cloudscape-design/board-components/board";
 import BoardItem from "@cloudscape-design/board-components/board-item";
 import Header from "@cloudscape-design/components/header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "@cloudscape-design/components";
+import IndividualUserTable from "./Widgets/IndividualUserTable";
+import PeakUsageBarGraph from "./Widgets/PeakUsageBarGraph";
+import PlanUtil from "./Widgets/PlanUtil";
 
-const Stage3 = () => {
+const Stage3 = ({ metrics, selectedPlan }) => {
+  // Nasty AF implementation, refactor at earilest convinence
   const [items, setItems] = useState([
     {
       id: "1",
       rowSpan: 1,
-      columnSpan: 2,
-      data: { title: "Demo 1", content: "First item" },
+      columnSpan: 3,
+      data: {
+        title: "Plan Utilization",
+        content: <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />,
+      },
     },
     {
       id: "2",
-      rowSpan: 1,
-      columnSpan: 2,
-      data: { title: "Demo 2", content: "Second item" },
+      rowSpan: 3,
+      columnSpan: 3,
+      data: {
+        title: "Usage by User's",
+        content: <IndividualUserTable metrics={metrics} />,
+      },
     },
     {
       id: "3",
-      rowSpan: 1,
+      rowSpan: 3,
       columnSpan: 3,
-      data: { title: "Demo 3", content: "Third item" },
+      data: {
+        title: "Usage by Category",
+        content: (
+          <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
+        ),
+      },
     },
   ]);
+
+  useEffect(() => {
+    setItems([
+      {
+        id: "1",
+        rowSpan: 1,
+        columnSpan: 3,
+        data: {
+          title: "Plan Utilization",
+          content: <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />,
+        },
+      },
+      {
+        id: "2",
+        rowSpan: 3,
+        columnSpan: 3,
+        data: {
+          title: "Usage by User's",
+          content: <IndividualUserTable metrics={metrics} />,
+        },
+      },
+      {
+        id: "3",
+        rowSpan: 3,
+        columnSpan: 3,
+        data: {
+          title: "Usage by Category",
+          content: (
+            <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
+          ),
+        },
+      },
+    ]);
+  }, [metrics, selectedPlan]);
+
   return (
     <Container>
       <Board

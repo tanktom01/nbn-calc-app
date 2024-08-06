@@ -1,4 +1,3 @@
-import React from "react";
 import { simpleTotal } from "../CommonFunctions/simpleTotal";
 import {
   Container,
@@ -125,44 +124,39 @@ const PlanUtil = ({ metrics, selectedPlan }) => {
   //console.log(UtilStatusUp);
   //console.log(UtilStatusDown);
   return (
-    <Container
-      variant="stacked"
-      header={<Header headingTagOverride="h3">Plan Utilization</Header>}
-    >
-      <KeyValuePairs
-        columns={2}
-        items={[
-          {
-            type: "group",
-            title: "Download",
-            items: [
-              {
-                label: "Utilization",
-                value: `${UtilDown}%`,
-              },
-              {
-                label: "",
-                value: getDownIcon(UtilStatusDown),
-              },
-            ],
-          },
-          {
-            type: "group",
-            title: "Upload",
-            items: [
-              {
-                label: "Utilization",
-                value: `${UtilUp}%`,
-              },
-              {
-                label: "",
-                value: getUpIcon(UtilStatusUp),
-              },
-            ],
-          },
-        ]}
-      />
-    </Container>
+    <KeyValuePairs
+      columns={2}
+      items={[
+        {
+          type: "group",
+          title: "Download",
+          items: [
+            {
+              label: "Utilization",
+              value: `${UtilDown}%`,
+            },
+            {
+              label: "",
+              value: getDownIcon(UtilStatusDown),
+            },
+          ],
+        },
+        {
+          type: "group",
+          title: "Upload",
+          items: [
+            {
+              label: "Utilization",
+              value: `${UtilUp}%`,
+            },
+            {
+              label: "",
+              value: getUpIcon(UtilStatusUp),
+            },
+          ],
+        },
+      ]}
+    />
   );
 };
 
