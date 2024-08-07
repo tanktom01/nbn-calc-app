@@ -1,14 +1,14 @@
 import "@cloudscape-design/global-styles/index.css";
 import "typeface-open-sans";
-import NavBar from "./components/NavBar";
-import Stage1 from "./components/Stage1/Stage1";
-import Stage2 from "./components/Stage2/Stage2";
-import Stage3 from "./components/Stage3/Stage3";
-import Hero from "./components/Hero";
+import NavBar from "../components/NavBar";
+import Stage1 from "../components/Stage1/Stage1";
+import Stage2 from "../components/Stage2/Stage2";
+import Stage3 from "../components/Stage3/Stage3";
+import Hero from "../components/Hero";
 import { useState } from "react";
-import { keyTable, tableOptions } from "./components/Stage2/Table-config";
+import { keyTable, tableOptions } from "../components/Stage2/Table-config";
 
-function App() {
+const App: React.FC = () => {
   // Stage 1 State + Handle
   const [selectedItemsStage1, setSelectedItemsStage1] = useState([
     { name: "Basic", download: 25, upload: 5 },
@@ -20,7 +20,7 @@ function App() {
   console.log(selectedItemsStage1);
 
   // Stage 2 State + Handles
-  const [selectedItemsStage2, setselectedItemsStage2] = useState([
+  const [selectedItemsStage2, setSelectedItemsStage2] = useState([
     {
       name: "John",
       device: "TV",
@@ -35,7 +35,7 @@ function App() {
     const updatedItems = selectedItemsStage2.map((item) =>
       item === currentItem ? newItem : item
     );
-    setselectedItemsStage2(updatedItems);
+    setSelectedItemsStage2(updatedItems);
   };
 
   const handleCreateUser = () => {
@@ -46,7 +46,7 @@ function App() {
       activity2: "-",
       activity3: "-",
     };
-    setselectedItemsStage2([...selectedItemsStage2, newUser]);
+    setSelectedItemsStage2([...selectedItemsStage2, newUser]);
   };
 
   // Data Transform Process
@@ -102,6 +102,6 @@ function App() {
       />
     </>
   );
-}
+};
 
 export default App;
