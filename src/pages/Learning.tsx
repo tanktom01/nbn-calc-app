@@ -1,10 +1,13 @@
 import React from "react";
+import NavBar from "../components/NavBar";
+import UnderConstruction from "../components/UnderContruction";
 
 const Learning: React.FC = () => {
   return (
-    <div>
-      <h1>PENIS</h1>
-    </div>
+    <>
+      <NavBar />
+      <UnderConstruction />
+    </>
   );
 };
 

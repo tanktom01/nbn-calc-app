@@ -1,0 +1,22 @@
+/* src/components/UnderConstruction.css */
+.under-construction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+  color: #ff5733;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.animation {
+  text-align: center;
+  animation: blink 1s infinite;
+}
+
+.animation img {
+  width: 200px;
+  height: auto;
+}

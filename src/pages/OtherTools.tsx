@@ -1,7 +1,14 @@
 import React from "react";
+import NavBar from "../components/NavBar";
+import UnderConstruction from "../components/UnderContruction";
 
 const OtherTools = () => {
-  return <div>OtherTools</div>;
+  return (
+    <>
+      <NavBar />
+      <UnderConstruction />
+    </>
+  );
 };
 
 export default OtherTools;
