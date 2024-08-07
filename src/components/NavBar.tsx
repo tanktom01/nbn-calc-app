@@ -1,4 +1,5 @@
 import { TopNavigation } from "@cloudscape-design/components";
+import logo from "../assets/vector-logo.png";
 
 const NavBar = () => {
   return (
@@ -7,8 +8,7 @@ const NavBar = () => {
         href: "/",
         title: "Usage Calculator",
         logo: {
-          src: "/logo-small-top-navigation.svg",
-          alt: "Service",
+          src: `${logo}`,
         },
       }}
       utilities={[

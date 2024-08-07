@@ -87,6 +87,7 @@ const App: React.FC = () => {
     <>
       <NavBar />
       <Hero />
+
       <Stage1
         selectedItems={selectedItemsStage1}
         handleSelectionChange={handleSelectionChangeStage1}
