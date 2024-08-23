@@ -7,6 +7,7 @@ import Stage3 from "../components/Stage3/Stage3";
 import Hero from "../components/Hero";
 import { useState } from "react";
 import { keyTable, tableOptions } from "../components/Stage2/Table-config";
+import "./App.css";
 
 const App: React.FC = () => {
   // Stage 1 State + Handle
@@ -87,20 +88,32 @@ const App: React.FC = () => {
     <>
       <NavBar />
       <Hero />
-
-      <Stage1
-        selectedItems={selectedItemsStage1}
-        handleSelectionChange={handleSelectionChangeStage1}
-      />
-      <Stage2
-        selectedItems={selectedItemsStage2}
-        handleSubmit={handleSubmit}
-        handleCreateUser={handleCreateUser}
-      />
-      <Stage3
-        metrics={transformedMetricValues}
-        selectedPlan={selectedItemsStage1}
-      />
+      <div className="container">
+        <div className="main-content">
+          <div className="stageSpace">
+            <Stage1
+              selectedItems={selectedItemsStage1}
+              handleSelectionChange={handleSelectionChangeStage1}
+            />
+          </div>
+          <div className="stageSpace">
+            <Stage2
+              selectedItems={selectedItemsStage2}
+              handleSubmit={handleSubmit}
+              handleCreateUser={handleCreateUser}
+            />
+          </div>
+          <div className="stageSpace">
+            <Stage3
+              metrics={transformedMetricValues}
+              selectedPlan={selectedItemsStage1}
+            />
+          </div>
+        </div>
+        <div className="banner">
+          <p>Side banner for later</p>
+        </div>
+      </div>
     </>
   );
 };

@@ -24,12 +24,14 @@ const NavBar = () => {
           href: "/other-tools",
           externalIconAriaLabel: " (opens in a new tab)",
         },
+        /*
         {
           type: "button",
           text: "Feedback",
           href: "/feedback",
           externalIconAriaLabel: " (opens in a new tab)",
         },
+      */
       ]}
     />
   );

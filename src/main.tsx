@@ -6,14 +6,14 @@ import App from "./pages/App";
 import Learning from "./pages/Learning";
 import "./index.css";
 import OtherTools from "./pages/OtherTools";
-import Feedback from "./pages/Feedback";
+// import Feedback from "./pages/Feedback";
 
+// <Route path="/feedback" element={<Feedback />} />
 const Main: React.FC = () => (
   <Router>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/learning" element={<Learning />} />
-      <Route path="/feedback" element={<Feedback />} />
       <Route path="/other-tools" element={<OtherTools />} />
     </Routes>
   </Router>
