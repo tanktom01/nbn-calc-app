@@ -1,12 +1,33 @@
 import { simpleTotal } from "../CommonFunctions/simpleTotal";
-import {
-  Container,
-  Header,
-  KeyValuePairs,
-  StatusIndicator,
-} from "@cloudscape-design/components";
+import { KeyValuePairs, StatusIndicator } from "@cloudscape-design/components";
 
-const PlanUtil = ({ metrics, selectedPlan }) => {
+interface MetricValues {
+  download: number;
+  upload: number;
+}
+
+interface Usage1MetricsItem {
+  name: string;
+  activity1: string;
+  activity1Metrics: MetricValues;
+  activity2: string;
+  activity2Metrics: MetricValues;
+  activity3: string;
+  activity3Metrics: MetricValues;
+}
+
+interface Stage1Item {
+  name: string;
+  download: number;
+  upload: number;
+}
+
+interface PlanUtilProps {
+  metrics: Usage1MetricsItem[];
+  selectedPlan: Stage1Item[];
+}
+
+const PlanUtil: React.FC<PlanUtilProps> = ({ metrics, selectedPlan }) => {
   const proccessedMetrics = simpleTotal(metrics);
   const plan = selectedPlan[0];
   //console.log(selectedPlan);
@@ -48,7 +69,7 @@ const PlanUtil = ({ metrics, selectedPlan }) => {
     UtilStatusUp = 5; //OUT OF BOUNDS
   }
 
-  const getDownIcon = (status) => {
+  const getDownIcon = (status: number) => {
     switch (status) {
       case 1:
         return (
@@ -85,7 +106,7 @@ const PlanUtil = ({ metrics, selectedPlan }) => {
     }
   };
 
-  const getUpIcon = (status) => {
+  const getUpIcon = (status: number) => {
     switch (status) {
       case 1:
         return (

@@ -1,6 +1,12 @@
 import { TableProps } from "@cloudscape-design/components";
 
-export const item = [
+interface Item {
+  name: string;
+  download: number;
+  upload: number;
+}
+
+export const items: Item[] = [
   { name: "Basic", download: 25, upload: 5 },
   { name: "Value", download: 50, upload: 20 },
   { name: "Fast", download: 100, upload: 20 },
@@ -9,17 +15,17 @@ export const item = [
 ];
 
 export const CARD_DATA = {
-  header: (item) => <h2>{item.name}</h2>,
+  header: (item: Item) => <h2>{item.name}</h2>,
   sections: [
     {
       id: "download",
       header: "Download",
-      content: (item) => `${item.download} MBps`,
+      content: (item: Item) => `${item.download} MBps`,
     },
     {
       id: "upload",
       header: "Upload",
-      content: (item) => `${item.upload} MBps`,
+      content: (item: Item) => `${item.upload} MBps`,
     },
   ],
 };

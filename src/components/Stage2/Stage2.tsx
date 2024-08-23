@@ -8,12 +8,29 @@ import {
 } from "@cloudscape-design/components";
 
 import { deviceTypes, tableOptions } from "./Table-config";
+import { Stage2Item, Column } from "../../interfaces";
 
-const Stage2 = ({ selectedItems, handleSubmit, handleCreateUser }) => {
+interface Stage2Props {
+  selectedItems: Stage2Item[];
+  handleSubmit: (
+    currentItem: Stage2Item,
+    column: Column,
+    value: string
+  ) => void;
+  handleCreateUser: () => void;
+}
+
+const Stage2: React.FC<Stage2Props> = ({
+  selectedItems,
+  handleSubmit,
+  handleCreateUser,
+}) => {
   return (
     <Table
       items={selectedItems}
-      submitEdit={handleSubmit}
+      submitEdit={(item, column, newValue) => {
+        handleSubmit(item as Stage2Item, column as Column, newValue as string);
+      }}
       columnDefinitions={[
         {
           id: "name",

@@ -8,20 +8,32 @@ import Hero from "../components/Hero";
 import { useState } from "react";
 import { keyTable, tableOptions } from "../components/Stage2/Table-config";
 import "./App.css";
+import {
+  Stage1Item,
+  SelectionChangeDetail,
+  Stage2Item,
+  Column,
+  MetricValues,
+  TransformedStage2Item,
+  TransformedStage2ItemWithMetrics,
+} from "../interfaces";
 
 const App: React.FC = () => {
   // Stage 1 State + Handle
-  const [selectedItemsStage1, setSelectedItemsStage1] = useState([
+  const [selectedItemsStage1, setSelectedItemsStage1] = useState<Stage1Item[]>([
     { name: "Basic", download: 25, upload: 5 },
   ]);
 
-  const handleSelectionChangeStage1 = ({ detail }) => {
+  const handleSelectionChangeStage1 = ({
+    detail,
+  }: {
+    detail: SelectionChangeDetail;
+  }) => {
     setSelectedItemsStage1(detail?.selectedItems ?? []);
   };
-  console.log(selectedItemsStage1);
 
   // Stage 2 State + Handles
-  const [selectedItemsStage2, setSelectedItemsStage2] = useState([
+  const [selectedItemsStage2, setSelectedItemsStage2] = useState<Stage2Item[]>([
     {
       name: "John",
       device: "TV",
@@ -31,7 +43,11 @@ const App: React.FC = () => {
     },
   ]);
 
-  const handleSubmit = (currentItem, column, value) => {
+  const handleSubmit = (
+    currentItem: Stage2Item,
+    column: Column,
+    value: string
+  ) => {
     const newItem = { ...currentItem, [column.id]: value };
     const updatedItems = selectedItemsStage2.map((item) =>
       item === currentItem ? newItem : item
@@ -51,28 +67,30 @@ const App: React.FC = () => {
   };
 
   // Data Transform Process
-  const getActivityValue = (activity) => {
+  const getActivityValue = (activity: string): string | null => {
     const match = tableOptions.find((option) => option.label === activity);
     return match ? match.value : null;
   };
 
-  const getMetricValues = (activity) => {
+  const getMetricValues = (activity: string): MetricValues => {
     const match = keyTable.find((option) => option.key === activity);
     return match
       ? { download: match.download, upload: match.upload }
-      : { download: null, upload: null };
+      : { download: 0, upload: 0 };
   };
 
-  const transformUserData = (data) => {
+  const transformUserData = (data: Stage2Item[]): TransformedStage2Item[] => {
     return data.map((user) => ({
       ...user,
-      activity1: getActivityValue(user.activity1),
-      activity2: getActivityValue(user.activity2),
-      activity3: getActivityValue(user.activity3),
+      activity1: getActivityValue(user.activity1) as string,
+      activity2: getActivityValue(user.activity2) as string,
+      activity3: getActivityValue(user.activity3) as string,
     }));
   };
 
-  const transformMetricValues = (array) => {
+  const transformMetricValues = (
+    array: TransformedStage2Item[]
+  ): TransformedStage2ItemWithMetrics[] => {
     return array.map((items) => ({
       ...items,
       activity1Metrics: getMetricValues(items.activity1),
@@ -83,6 +101,11 @@ const App: React.FC = () => {
 
   const transformedData = transformUserData(selectedItemsStage2);
   const transformedMetricValues = transformMetricValues(transformedData);
+
+  console.log("Stage1 selected items:", selectedItemsStage1);
+  console.log("Stage2 selected items:", selectedItemsStage2);
+  console.log("Transformed User Data:", transformedData);
+  console.log("Transformed Metric Values:", transformedMetricValues);
 
   return (
     <>

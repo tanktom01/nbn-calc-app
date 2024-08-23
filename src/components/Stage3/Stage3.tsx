@@ -1,16 +1,47 @@
-import * as React from "react";
-import Board from "@cloudscape-design/board-components/board";
-import BoardItem from "@cloudscape-design/board-components/board-item";
-import Header from "@cloudscape-design/components/header";
-import { useState, useEffect } from "react";
 import { Container } from "@cloudscape-design/components";
 import IndividualUserTable from "./Widgets/IndividualUserTable";
 import PeakUsageBarGraph from "./Widgets/PeakUsageBarGraph";
 import PlanUtil from "./Widgets/PlanUtil";
+import { Stage1Item } from "../../interfaces";
 
-const Stage3 = ({ metrics, selectedPlan }) => {
+interface MetricValues {
+  download: number;
+  upload: number;
+}
+
+interface Usage1MetricsItem {
+  name: string;
+  activity1: string;
+  activity1Metrics: MetricValues;
+  activity2: string;
+  activity2Metrics: MetricValues;
+  activity3: string;
+  activity3Metrics: MetricValues;
+}
+
+interface Stage3Props {
+  metrics: Usage1MetricsItem[];
+  selectedPlan: Stage1Item[];
+}
+
+const Stage3: React.FC<Stage3Props> = ({ metrics, selectedPlan }) => {
+  return (
+    <>
+      <Container>
+        <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />
+      </Container>
+      <Container>
+        <IndividualUserTable metrics={metrics} />
+      </Container>
+      <Container>
+        <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
+      </Container>
+    </>
+  );
+
+  /*
   // Nasty AF implementation, refactor at earilest convinence
-  const [items, setItems] = useState([
+  const [items, setItems] = useState<BoardItemState[]>([
     {
       id: "1",
       rowSpan: 1,
@@ -81,6 +112,7 @@ const Stage3 = ({ metrics, selectedPlan }) => {
       <Board
         renderItem={(item) => (
           <BoardItem
+      
             header={<Header>{item.data.title}</Header>}
             i18nStrings={{
               dragHandleAriaLabel: "Drag handle",
@@ -90,13 +122,17 @@ const Stage3 = ({ metrics, selectedPlan }) => {
               resizeHandleAriaDescription:
                 "Use Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.",
             }}
+            
           >
+  
             {item.data.content}
           </BoardItem>
         )}
+      
         onItemsChange={(event) => setItems(event.detail.items)}
         items={items}
         i18nStrings={(() => {
+          
           function createAnnouncement(
             operationAnnouncement,
             conflicts,
@@ -181,6 +217,7 @@ const Stage3 = ({ metrics, selectedPlan }) => {
       />
     </Container>
   );
+  */
 };
 
 export default Stage3;

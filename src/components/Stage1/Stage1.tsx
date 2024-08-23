@@ -1,8 +1,16 @@
 import Cards from "@cloudscape-design/components/cards";
 import { Container, Header } from "@cloudscape-design/components";
-import { CARD_DATA, item } from "./Card-config";
+import { CARD_DATA, items } from "./Card-config";
+import { Stage1Item, SelectionChangeDetail } from "../../interfaces";
 
-const Stage1 = ({ selectedItems, handleSelectionChange }) => {
+interface Stage1Props {
+  selectedItems: Stage1Item[];
+  handleSelectionChange: (event: { detail: SelectionChangeDetail }) => void;
+}
+const Stage1: React.FC<Stage1Props> = ({
+  selectedItems,
+  handleSelectionChange,
+}) => {
   return (
     <Container
       header={
@@ -22,7 +30,7 @@ const Stage1 = ({ selectedItems, handleSelectionChange }) => {
         selectedItems={selectedItems}
         onSelectionChange={handleSelectionChange}
         visibleSections={["download", "upload"]}
-        items={item}
+        items={items}
       />
     </Container>
   );

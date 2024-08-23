@@ -1,10 +1,38 @@
-import { BarChart, Box, Button, Link } from "@cloudscape-design/components";
+import { BarChart, Box, Button } from "@cloudscape-design/components";
 
-const PeakUsageBarGraph = ({ metrics, selectedPlan }) => {
+interface MetricValues {
+  download: number;
+  upload: number;
+}
+
+interface Usage2MetricsItem {
+  name: string;
+  activity1: string;
+  activity1Metrics: MetricValues;
+  activity2: string;
+  activity2Metrics: MetricValues;
+  activity3: string;
+  activity3Metrics: MetricValues;
+}
+
+interface Stage1Item {
+  name: string;
+  download: number;
+  upload: number;
+}
+
+interface PeakUsageBarGraphProps {
+  metrics: Usage2MetricsItem[];
+  selectedPlan: Stage1Item[];
+}
+
+const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({
+  metrics,
+  selectedPlan,
+}) => {
   if (!Array.isArray(metrics)) {
     console.error("metrics is not an array");
-    //console.log(metrics)
-    return []; // or handle this case as needed
+    return null;
   }
   //console.log(selectedPlan);
   const checkDomainValue = selectedPlan[0];
@@ -12,26 +40,38 @@ const PeakUsageBarGraph = ({ metrics, selectedPlan }) => {
   //console.log(yDomainValue);
 
   // MOVIES
-  const mdActivityTotals = { 12: 0, 13: 0, 14: 0 };
-  const muActivityTotals = { 12: 0, 13: 0, 14: 0 };
+  const mdActivityTotals: Record<string, number> = { 12: 0, 13: 0, 14: 0 };
+  const muActivityTotals: Record<string, number> = { 12: 0, 13: 0, 14: 0 };
   // LIVE STREAMING
-  const lsdActivityTotals = { 16: 0, 17: 0, 18: 0 };
-  const lsuActivityTotals = { 16: 0, 17: 0, 18: 0 };
+  const lsdActivityTotals: Record<string, number> = { 16: 0, 17: 0, 18: 0 };
+  const lsuActivityTotals: Record<string, number> = { 16: 0, 17: 0, 18: 0 };
   // EDUCATION
-  const edActivityTotals = { 8: 0, 9: 0 };
-  const euActivityTotals = { 8: 0, 9: 0 };
+  const edActivityTotals: Record<string, number> = { 8: 0, 9: 0 };
+  const euActivityTotals: Record<string, number> = { 8: 0, 9: 0 };
   // WORK
-  const wdActivityTotals = { 10: 0, 11: 0 };
-  const wuActivityTotals = { 10: 0, 11: 0 };
+  const wdActivityTotals: Record<string, number> = { 10: 0, 11: 0 };
+  const wuActivityTotals: Record<string, number> = { 10: 0, 11: 0 };
   // GAMING
-  const gdActivityTotals = { 6: 0 };
-  const guActivityTotals = { 6: 0 };
+  const gdActivityTotals: Record<string, number> = { 6: 0 };
+  const guActivityTotals: Record<string, number> = { 6: 0 };
   // SOCIAL MEDIA
-  const smdActivityTotals = { 5: 0 };
-  const smuActivityTotals = { 5: 0 };
+  const smdActivityTotals: Record<string, number> = { 5: 0 };
+  const smuActivityTotals: Record<string, number> = { 5: 0 };
   // OTHER
-  const odActivityTotals = { 2: 0, 3: 0, 4: 0, 7: 0, 15: 0 };
-  const ouActivityTotals = { 2: 0, 3: 0, 4: 0, 7: 0, 15: 0 };
+  const odActivityTotals: Record<string, number> = {
+    2: 0,
+    3: 0,
+    4: 0,
+    7: 0,
+    15: 0,
+  };
+  const ouActivityTotals: Record<string, number> = {
+    2: 0,
+    3: 0,
+    4: 0,
+    7: 0,
+    15: 0,
+  };
 
   metrics.forEach((item) => {
     // Movies (Down/Up)
