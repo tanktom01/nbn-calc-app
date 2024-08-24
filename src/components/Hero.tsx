@@ -8,13 +8,10 @@ const Hero = () => {
             This is a free tool to help you understand your usage so that you
             pick the right plan for you!
           </p>
-          <img src="src\assets\hero-thing.png" />
+          <img src="/hero-thing.png" />
         </div>
         <div className="left-content">
-          <img
-            src="src\assets\random-internet-thing.png"
-            className="hero-img"
-          />
+          <img src="/random-internet-thing.png" className="hero-img" />
         </div>
       </div>
     </div>
