@@ -7,6 +7,7 @@ import Learning from "./pages/Learning";
 import "./index.css";
 import OtherTools from "./pages/OtherTools";
 // import Feedback from "./pages/Feedback";
+import { inject } from "@vercel/analytics";
 
 // <Route path="/feedback" element={<Feedback />} />
 const Main: React.FC = () => (
@@ -23,3 +24,4 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(<Main />);
+inject();
