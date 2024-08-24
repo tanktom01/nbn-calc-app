@@ -3,7 +3,7 @@ import IndividualUserTable from "./Widgets/IndividualUserTable";
 import PeakUsageBarGraph from "./Widgets/PeakUsageBarGraph";
 import PlanUtil from "./Widgets/PlanUtil";
 import { Stage1Item } from "../../interfaces";
-
+import "../../pages/App.css";
 interface MetricValues {
   download: number;
   upload: number;
@@ -27,15 +27,21 @@ interface Stage3Props {
 const Stage3: React.FC<Stage3Props> = ({ metrics, selectedPlan }) => {
   return (
     <>
-      <Container>
-        <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />
-      </Container>
-      <Container>
-        <IndividualUserTable metrics={metrics} />
-      </Container>
-      <Container>
-        <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
-      </Container>
+      <div className="stageSpace">
+        <Container>
+          <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />
+        </Container>
+      </div>
+      <div className="stageSpace">
+        <Container>
+          <IndividualUserTable metrics={metrics} />
+        </Container>
+      </div>
+      <div className="stageSpace">
+        <Container>
+          <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
+        </Container>
+      </div>
     </>
   );
 

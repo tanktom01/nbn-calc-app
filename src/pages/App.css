@@ -33,7 +33,7 @@
   }
 
   .main-content {
-    
+    flex: none;
     padding-top: 20px;
     padding-right: 0; /* Remove right padding */
   }

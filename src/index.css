@@ -55,3 +55,8 @@ width: 80%;
         text-align: center;
       }
   }
+
+  .table-container {
+    overflow-x: auto;
+    white-space: nowrap;
+  }

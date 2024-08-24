@@ -1,5 +1,6 @@
+import * as React from "react";
+import Table from "@cloudscape-design/components/table";
 import {
-  Table,
   SpaceBetween,
   Button,
   Header,
@@ -9,7 +10,7 @@ import {
 
 import { deviceTypes, tableOptions } from "./Table-config";
 import { Stage2Item, Column } from "../../interfaces";
-
+import "../../index.css";
 interface Stage2Props {
   selectedItems: Stage2Item[];
   handleSubmit: (
@@ -27,7 +28,12 @@ const Stage2: React.FC<Stage2Props> = ({
 }) => {
   return (
     <Table
+      enableKeyboardNavigation={true}
+      stickyHeader={true}
+      contentDensity="comfortable"
       items={selectedItems}
+      trackBy="name"
+      variant="container"
       submitEdit={(item, column, newValue) => {
         handleSubmit(item as Stage2Item, column as Column, newValue as string);
       }}
@@ -36,7 +42,6 @@ const Stage2: React.FC<Stage2Props> = ({
           id: "name",
           header: "User Name",
           cell: (item) => item.name,
-          minWidth: 100,
           editConfig: {
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
@@ -56,7 +61,6 @@ const Stage2: React.FC<Stage2Props> = ({
           id: "device",
           header: "Device",
           cell: (item) => item.device,
-          minWidth: 100,
           editConfig: {
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
@@ -82,7 +86,6 @@ const Stage2: React.FC<Stage2Props> = ({
           id: "activity1",
           header: "Activity 1",
           cell: (item) => item.activity1,
-          minWidth: 100,
           editConfig: {
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
@@ -111,7 +114,6 @@ const Stage2: React.FC<Stage2Props> = ({
           id: "activity2",
           header: "Activity 2",
           cell: (item) => item.activity2,
-          minWidth: 100,
           editConfig: {
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
@@ -140,7 +142,6 @@ const Stage2: React.FC<Stage2Props> = ({
           id: "activity3",
           header: "Activity 3",
           cell: (item) => item.activity3,
-          minWidth: 100,
           editConfig: {
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
