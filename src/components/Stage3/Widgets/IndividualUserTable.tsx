@@ -28,13 +28,14 @@ const IndividualUserTable: React.FC<IndividualUserTableProps> = ({
 }) => {
   if (!Array.isArray(metrics)) {
     console.error("metrics is not an array");
-    return null; // or handle this case as needed
+    return null;
   }
 
   const processedMetrics: SimpleTotalItem[] = simpleTotal(metrics);
 
   return (
     <Table
+      variant="borderless"
       items={processedMetrics}
       columnDefinitions={[
         {

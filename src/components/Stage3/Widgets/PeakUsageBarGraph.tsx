@@ -36,7 +36,7 @@ const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({
   }
   //console.log(selectedPlan);
   const checkDomainValue = selectedPlan[0];
-  const yDomainValue = checkDomainValue.download * 1.2;
+  const yDomainValue = checkDomainValue.download * 1.3;
   //console.log(yDomainValue);
 
   // MOVIES
@@ -417,7 +417,7 @@ const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({
         };
       }}
       fitHeight
-      height={300}
+      height={200}
       horizontalBars
       stackedBars
       xTitle="Usage Type"

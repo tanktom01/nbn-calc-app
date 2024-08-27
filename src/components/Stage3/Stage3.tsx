@@ -38,17 +38,19 @@ const Stage3: React.FC<Stage3Props> = ({ metrics, selectedPlan }) => {
         }
       >
         <div className="stageSpace">
-          <Container>
+          <Container header={<Header variant="h1">Plan Utilisation</Header>}>
             <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />
           </Container>
         </div>
         <div className="stageSpace">
-          <Container>
+          <Container header={<Header variant="h1">Usage By Individual</Header>}>
             <IndividualUserTable metrics={metrics} />
           </Container>
         </div>
         <div className="stageSpace">
-          <Container>
+          <Container
+            header={<Header variant="h1">Peak Usage by Category</Header>}
+          >
             <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
           </Container>
         </div>
