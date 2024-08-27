@@ -10,11 +10,6 @@
   
 }
 
-.banner {
-  flex: 1; /* 1/4th of the width for the banner */
-  padding: 20px;
-  background-color: #f5f5f5; /* Light background to distinguish it */
-}
 
 .stageSpace {
   padding-bottom: 20px;
@@ -26,11 +21,6 @@
     flex-direction: column; /* Stack the content vertically */
   }
 
-  .banner {
-    order: -1; 
-    flex: none; /* Reset flex so it takes up the full width */
-    padding-bottom: 20px; /* Add padding at the bottom for separation */
-  }
 
   .main-content {
     flex: none;

@@ -184,7 +184,7 @@ const Stage2: React.FC<Stage2Props> = ({
             </SpaceBetween>
           }
         >
-          2. Calculate your HouseHold usage
+          2. Calculate your Household usage
         </Header>
       }
     />

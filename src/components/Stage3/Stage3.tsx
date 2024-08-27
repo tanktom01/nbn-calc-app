@@ -1,4 +1,4 @@
-import { Container } from "@cloudscape-design/components";
+import { Container, Header } from "@cloudscape-design/components";
 import IndividualUserTable from "./Widgets/IndividualUserTable";
 import PeakUsageBarGraph from "./Widgets/PeakUsageBarGraph";
 import PlanUtil from "./Widgets/PlanUtil";
@@ -27,21 +27,32 @@ interface Stage3Props {
 const Stage3: React.FC<Stage3Props> = ({ metrics, selectedPlan }) => {
   return (
     <>
-      <div className="stageSpace">
-        <Container>
-          <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />
-        </Container>
-      </div>
-      <div className="stageSpace">
-        <Container>
-          <IndividualUserTable metrics={metrics} />
-        </Container>
-      </div>
-      <div className="stageSpace">
-        <Container>
-          <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
-        </Container>
-      </div>
+      <Container
+        header={
+          <Header
+            variant="h2"
+            description="View a detailed breakdown of your peak usage by a number of predetermined category"
+          >
+            3. Check out you Usage
+          </Header>
+        }
+      >
+        <div className="stageSpace">
+          <Container>
+            <PlanUtil metrics={metrics} selectedPlan={selectedPlan} />
+          </Container>
+        </div>
+        <div className="stageSpace">
+          <Container>
+            <IndividualUserTable metrics={metrics} />
+          </Container>
+        </div>
+        <div className="stageSpace">
+          <Container>
+            <PeakUsageBarGraph metrics={metrics} selectedPlan={selectedPlan} />
+          </Container>
+        </div>
+      </Container>
     </>
   );
 

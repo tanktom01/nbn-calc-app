@@ -1,6 +1,16 @@
+import { Alert } from "@cloudscape-design/components";
+
 const Hero = () => {
   return (
     <div className="hero-div">
+      <Alert
+        dismissible
+        statusIconAriaLabel="Info"
+        header="This is a Beta Product"
+      >
+        This project is still in development, please report any bugs to
+        4oyulydw5@mozmail.com
+      </Alert>
       <div className="container">
         <div className="right-content">
           <h1 className="title-text">Calculate your Broadband Usage</h1>

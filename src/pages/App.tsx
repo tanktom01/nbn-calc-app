@@ -102,11 +102,6 @@ const App: React.FC = () => {
   const transformedData = transformUserData(selectedItemsStage2);
   const transformedMetricValues = transformMetricValues(transformedData);
 
-  console.log("Stage1 selected items:", selectedItemsStage1);
-  console.log("Stage2 selected items:", selectedItemsStage2);
-  console.log("Transformed User Data:", transformedData);
-  console.log("Transformed Metric Values:", transformedMetricValues);
-
   return (
     <>
       <NavBar />
@@ -132,9 +127,6 @@ const App: React.FC = () => {
               selectedPlan={selectedItemsStage1}
             />
           </div>
-        </div>
-        <div className="banner">
-          <p>Side banner for later</p>
         </div>
       </div>
     </>

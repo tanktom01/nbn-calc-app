@@ -1,7 +1,7 @@
 // src/components/UnderConstruction.tsx
 import React from "react";
 import "../components/UnderContruction.css";
-import diggingAnimation from "../assets/dumper.gif";
+import diggingAnimation from "/dumper.gif";
 
 const UnderConstruction: React.FC = () => {
   return (

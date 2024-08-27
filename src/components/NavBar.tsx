@@ -14,12 +14,14 @@ const NavBar = () => {
       utilities={[
         {
           type: "button",
+          iconName: "file",
           text: "Learning",
           href: "/learning",
           externalIconAriaLabel: " (opens in a new tab)",
         },
         {
           type: "button",
+          iconName: "suggestions",
           text: "Other Tools",
           href: "/other-tools",
           externalIconAriaLabel: " (opens in a new tab)",
