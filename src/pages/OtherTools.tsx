@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import UnderConstruction from "../components/UnderContruction";
 
-const OtherTools = () => {
+const OtherTools: React.FC = () => {
   return (
     <>
       <NavBar />
