@@ -26,18 +26,11 @@ interface PeakUsageBarGraphProps {
   selectedPlan: Stage1Item[];
 }
 
-const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({
-  metrics,
-  selectedPlan,
-}) => {
+const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({ metrics }) => {
   if (!Array.isArray(metrics)) {
     console.error("metrics is not an array");
     return null;
   }
-  //console.log(selectedPlan);
-  const checkDomainValue = selectedPlan[0];
-  const yDomainValue = checkDomainValue.download * 1.3;
-  //console.log(yDomainValue);
 
   // MOVIES
   const mdActivityTotals: Record<string, number> = { 12: 0, 13: 0, 14: 0 };
@@ -213,6 +206,30 @@ const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({
     ouActivityTotals[4] +
     ouActivityTotals[7] +
     ouActivityTotals[15];
+
+  const TotalDown =
+    MovieDownTotal +
+    LiveStreamDownTotal +
+    EducationDownTotal +
+    WorkDownTotal +
+    GamingDownTotal +
+    SocialDownTotal +
+    OtherDownTotal;
+  // console.log(TotalDown);
+
+  const TotalUp =
+    MovieUploadTotal +
+    LiveStreamUploadTotal +
+    EducationUploadTotal +
+    WorkUploadTotal +
+    GamingUploadTotal +
+    SocialUploadTotal +
+    OtherUploadTotal;
+
+  const getMaxTotal = () => {
+    return Math.max(TotalDown, TotalUp) * 1.2;
+  };
+  //console.log(getMaxTotal());
   return (
     <BarChart
       series={[
@@ -281,7 +298,7 @@ const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({
         },
       ]}
       xDomain={["Download", "Upload"]}
-      yDomain={[0, yDomainValue]}
+      yDomain={[0, getMaxTotal()]}
       detailPopoverSeriesContent={({ series, x, y }) => {
         return {
           key: series.title,
