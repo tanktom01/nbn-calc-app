@@ -82,6 +82,7 @@ const App: React.FC = () => {
               handleSubmit={handleSubmit}
               handleCreateUser={handleCreateUser}
             />
+            <PeerToPeerTable />
           </div>
           <div className="stageSpace">
             <Stage3

@@ -11,7 +11,6 @@ import {
 import { deviceTypes, tableOptions } from "./Table-config";
 import { Stage2Item, Column } from "../../interfaces";
 import "../../index.css";
-import PeerToPeerTable from "./PeerToPeerTable";
 interface Stage2Props {
   selectedItems: Stage2Item[];
   handleSubmit: (
