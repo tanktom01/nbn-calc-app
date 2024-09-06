@@ -10,8 +10,10 @@ export const items: Item[] = [
   { name: "Basic", download: 25, upload: 5 },
   { name: "Value", download: 50, upload: 20 },
   { name: "Fast", download: 100, upload: 20 },
+  { name: "Faster", download: 100, upload: 40 },
   { name: "Super Fast", download: 250, upload: 25 },
   { name: "Ultra Fast", download: 1000, upload: 50 },
+  { name: "Mega Fast", download: 1000, upload: 100 },
 ];
 
 export const CARD_DATA = {

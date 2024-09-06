@@ -32,7 +32,7 @@ const Stage2: React.FC<Stage2Props> = ({
       stickyHeader={true}
       contentDensity="comfortable"
       items={selectedItems}
-      trackBy="name"
+      trackBy="id"
       variant="container"
       submitEdit={(item, column, newValue) => {
         handleSubmit(item as Stage2Item, column as Column, newValue as string);

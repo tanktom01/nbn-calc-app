@@ -1,34 +1,17 @@
+import { ActivityMetrics, Stage1Item } from "../../../interfaces";
 import { simpleTotal } from "../CommonFunctions/simpleTotal";
 import { KeyValuePairs, StatusIndicator } from "@cloudscape-design/components";
 
-interface MetricValues {
-  download: number;
-  upload: number;
-}
-
-interface Usage1MetricsItem {
-  name: string;
-  activity1: string;
-  activity1Metrics: MetricValues;
-  activity2: string;
-  activity2Metrics: MetricValues;
-  activity3: string;
-  activity3Metrics: MetricValues;
-}
-
-interface Stage1Item {
-  name: string;
-  download: number;
-  upload: number;
-}
-
 interface PlanUtilProps {
-  metrics: Usage1MetricsItem[];
+  activityMetrics: ActivityMetrics[];
   selectedPlan: Stage1Item[];
 }
 
-const PlanUtil: React.FC<PlanUtilProps> = ({ metrics, selectedPlan }) => {
-  const proccessedMetrics = simpleTotal(metrics);
+const PlanUtil: React.FC<PlanUtilProps> = ({
+  activityMetrics,
+  selectedPlan,
+}) => {
+  const proccessedMetrics = simpleTotal(activityMetrics);
   const plan = selectedPlan[0];
   //console.log(selectedPlan);
   const totalDown = proccessedMetrics.reduce((accumulator, item) => {

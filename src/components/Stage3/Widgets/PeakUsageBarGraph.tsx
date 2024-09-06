@@ -1,33 +1,15 @@
 import { BarChart, Box, Button } from "@cloudscape-design/components";
-
-interface MetricValues {
-  download: number;
-  upload: number;
-}
-
-interface Usage2MetricsItem {
-  name: string;
-  activity1: string;
-  activity1Metrics: MetricValues;
-  activity2: string;
-  activity2Metrics: MetricValues;
-  activity3: string;
-  activity3Metrics: MetricValues;
-}
-
-interface Stage1Item {
-  name: string;
-  download: number;
-  upload: number;
-}
+import { ActivityMetrics, Stage1Item } from "../../../interfaces";
 
 interface PeakUsageBarGraphProps {
-  metrics: Usage2MetricsItem[];
+  activityMetrics: ActivityMetrics[];
   selectedPlan: Stage1Item[];
 }
 
-const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({ metrics }) => {
-  if (!Array.isArray(metrics)) {
+const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({
+  activityMetrics,
+}) => {
+  if (!Array.isArray(activityMetrics)) {
     console.error("metrics is not an array");
     return null;
   }
@@ -66,7 +48,8 @@ const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({ metrics }) => {
     15: 0,
   };
 
-  metrics.forEach((item) => {
+  // Shit code but I dont give a shit gets the fucking job done so fuck it
+  activityMetrics.forEach((item) => {
     // Movies (Down/Up)
     ["12", "13", "14"].forEach((activity) => {
       if (item.activity1 === activity) {
@@ -227,7 +210,7 @@ const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({ metrics }) => {
     OtherUploadTotal;
 
   const getMaxTotal = () => {
-    return Math.max(TotalDown, TotalUp) * 1.2;
+    return Math.max(TotalDown, TotalUp) * 1.1;
   };
   //console.log(getMaxTotal());
   return (
@@ -438,6 +421,7 @@ const PeakUsageBarGraph: React.FC<PeakUsageBarGraphProps> = ({ metrics }) => {
       horizontalBars
       stackedBars
       xTitle="Usage Type"
+      yTitle="MBps"
       empty={
         <Box textAlign="center" color="inherit">
           <b>No data available</b>

@@ -12,16 +12,15 @@ export interface Stage2Item {
   activity3: string;
 }
 
+export interface MetricValues {
+  download: number;
+  upload: number;
+}
 export interface TransformedStage2Item
   extends Omit<Stage2Item, "activity1" | "activity2" | "activity3"> {
   activity1: string;
   activity2: string;
   activity3: string;
-}
-
-export interface MetricValues {
-  download: number | 0;
-  upload: number | 0;
 }
 
 export interface TransformedStage2ItemWithMetrics
@@ -31,10 +30,30 @@ export interface TransformedStage2ItemWithMetrics
   activity3Metrics: MetricValues;
 }
 
+export interface ActivityMetrics {
+  name: string;
+  device: string;
+  activity1: string;
+  activity1Metrics: MetricValues;
+  activity2: string;
+  activity2Metrics: MetricValues;
+  activity3: string;
+  activity3Metrics: MetricValues;
+}
+export interface TransformedStage2Device {
+  device: string;
+}
+
 export interface Column {
   id: string;
 }
 
 export interface SelectionChangeDetail {
   selectedItems: Stage1Item[];
+}
+
+export interface SimpleTotalItem {
+  name: string;
+  down: number;
+  up: number;
 }

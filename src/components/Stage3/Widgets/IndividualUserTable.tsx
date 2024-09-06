@@ -1,37 +1,20 @@
 import { Table } from "@cloudscape-design/components";
 import { simpleTotal } from "../CommonFunctions/simpleTotal";
-
-interface MetricValues {
-  download: number;
-  upload: number;
-}
-
-interface Usage3MetricsItem {
-  name: string;
-  activity1Metrics: MetricValues;
-  activity2Metrics: MetricValues;
-  activity3Metrics: MetricValues;
-}
-
-interface SimpleTotalItem {
-  name: string;
-  down: number;
-  up: number;
-}
+import { ActivityMetrics, SimpleTotalItem } from "../../../interfaces";
 
 interface IndividualUserTableProps {
-  metrics: Usage3MetricsItem[];
+  activityMetrics: ActivityMetrics[];
 }
 
 const IndividualUserTable: React.FC<IndividualUserTableProps> = ({
-  metrics,
+  activityMetrics,
 }) => {
-  if (!Array.isArray(metrics)) {
+  if (!Array.isArray(activityMetrics)) {
     console.error("metrics is not an array");
     return null;
   }
 
-  const processedMetrics: SimpleTotalItem[] = simpleTotal(metrics);
+  const processedMetrics: SimpleTotalItem[] = simpleTotal(activityMetrics);
 
   return (
     <Table
@@ -45,12 +28,12 @@ const IndividualUserTable: React.FC<IndividualUserTableProps> = ({
         },
         {
           id: "down",
-          header: "Download",
+          header: "Download (MBps)",
           cell: (item: SimpleTotalItem) => <p>{item.down}</p>,
         },
         {
           id: "up",
-          header: "Upload",
+          header: "Upload (MBps)",
           cell: (item: SimpleTotalItem) => <p>{item.up}</p>,
         },
       ]}
