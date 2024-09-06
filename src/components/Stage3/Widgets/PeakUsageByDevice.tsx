@@ -8,7 +8,6 @@ interface PeakUsageBarGraphProps {
 const PeakUsageByDevice: React.FC<PeakUsageBarGraphProps> = ({
   activityMetrics,
 }) => {
-  console.log(activityMetrics);
   const TV: Record<string, number> = { 1: 0, 2: 0 };
   const SP: Record<string, number> = { 1: 0, 2: 0 };
   const ST: Record<string, number> = { 1: 0, 2: 0 };

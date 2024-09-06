@@ -13,6 +13,7 @@ import {
   Stage2Item,
   Column,
 } from "../interfaces";
+import PeerToPeerTable from "../components/Stage2/PeerToPeerTable";
 
 const App: React.FC = () => {
   // Stage 1 State + Handle
