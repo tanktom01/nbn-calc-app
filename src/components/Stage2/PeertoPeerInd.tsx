@@ -7,24 +7,28 @@ import {
   SpaceBetween,
   Table,
 } from "@cloudscape-design/components";
-import { Column, PeerState } from "../../interfaces";
+import { Column, IndPeerState } from "../../interfaces";
 import { useState } from "react";
 import { usageType } from "./Table-config";
 
-interface PtpProps {
-  selectedItems: PeerState[];
-  handleSubmit: (currentItem: PeerState, column: Column, value: number) => void;
+interface IndPtpProps {
+  selectedItems: IndPeerState[];
+  handleSubmit: (
+    currentItem: IndPeerState,
+    column: Column,
+    value: number
+  ) => void;
   handleCreateJob: () => void;
 }
 
-const PeerToPeerTable: React.FC<PtpProps> = ({
+const PeertoPeerInd: React.FC<IndPtpProps> = ({
   selectedItems,
   handleSubmit,
   handleCreateJob,
 }) => {
   const [numFilesWarning, setNumFilesWarning] = useState<string | null>(null);
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false);
-  //make sure you implement something in the handle
+
   return (
     <Table
       enableKeyboardNavigation={true}
@@ -32,71 +36,32 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
       contentDensity="comfortable"
       submitEdit={(item, column, newValue) => {
         if (!disableSubmit) {
-          handleSubmit(item as PeerState, column as Column, newValue as number);
+          handleSubmit(
+            item as IndPeerState,
+            column as Column,
+            newValue as number
+          );
         }
       }}
       items={selectedItems}
       columnDefinitions={[
         {
-          id: "numfiles",
-          header: "Number of Files",
-          cell: (item) => item.numfiles,
+          id: "fName",
+          header: "Files name",
+          cell: (item) => item.fName,
           editConfig: {
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
               return (
-                <FormField
-                  errorText={numFilesWarning} // Conditionally display the warning
-                >
-                  <Input
-                    autoFocus={true}
-                    value={currentValue ?? item.numfiles}
-                    onChange={(event) => {
-                      const value = event.detail.value;
-                      // Check if the input is a valid number
-                      if (isNaN(Number(value)) || Number(value) < 0) {
-                        setNumFilesWarning("User has not input a valid number");
-                        setDisableSubmit(true);
-                      } else {
-                        setNumFilesWarning(null); // Clear the warning if valid
-                        setDisableSubmit(false);
-                        setValue(value);
-                      }
-                    }}
-                  />
-                </FormField>
-              );
-            },
-          },
-        },
-        {
-          id: "avgsize",
-          header: "Average Size (GB)",
-          cell: (item) => item.avgsize,
-          editConfig: {
-            editIconAriaLabel: "editable",
-            editingCell: (item, { currentValue, setValue }) => {
-              return (
-                <FormField
-                  errorText={numFilesWarning} // Conditionally display the warning
-                >
-                  <Input
-                    autoFocus={true}
-                    value={currentValue ?? item.avgsize}
-                    onChange={(event) => {
-                      const value = event.detail.value;
-                      // Check if the input is a valid number
-                      if (isNaN(Number(value)) || Number(value) < 0) {
-                        setNumFilesWarning("User has not input a valid number");
-                        setDisableSubmit(true);
-                      } else {
-                        setNumFilesWarning(null); // Clear the warning if valid
-                        setDisableSubmit(false);
-                        setValue(value);
-                      }
-                    }}
-                  />
-                </FormField>
+                <Input
+                  autoFocus={true}
+                  value={currentValue ?? item.fName}
+                  onChange={(event) => {
+                    const value = event.detail.value;
+
+                    setValue(value);
+                  }}
+                />
               );
             },
           },
@@ -127,6 +92,38 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
             },
           },
         },
+        {
+          id: "fileSize",
+          header: "File Size",
+          cell: (item) => item.fileSize,
+          editConfig: {
+            editIconAriaLabel: "editable",
+            editingCell: (item, { currentValue, setValue }) => {
+              return (
+                <FormField
+                  errorText={numFilesWarning} // Conditionally display the warning
+                >
+                  <Input
+                    autoFocus={true}
+                    value={currentValue ?? item.fileSize}
+                    onChange={(event) => {
+                      const value = event.detail.value;
+                      // Check if the input is a valid number
+                      if (isNaN(Number(value)) || Number(value) < 0) {
+                        setNumFilesWarning("User has not input a valid number");
+                        setDisableSubmit(true);
+                      } else {
+                        setNumFilesWarning(null); // Clear the warning if valid
+                        setDisableSubmit(false);
+                        setValue(value);
+                      }
+                    }}
+                  />
+                </FormField>
+              );
+            },
+          },
+        },
       ]}
       header={
         <Header
@@ -152,4 +149,4 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
   );
 };
 
-export default PeerToPeerTable;
+export default PeertoPeerInd;

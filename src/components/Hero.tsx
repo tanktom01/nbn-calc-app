@@ -8,8 +8,8 @@ const Hero = () => {
         statusIconAriaLabel="Info"
         header="This is a Beta Product"
       >
-        This project is still in development, please report any bugs to
-        4oyulydw5@mozmail.com
+        This project is currently in <b>Early Access</b>, please report any bugs
+        to 4oyulydw5@mozmail.com
       </Alert>
       <div className="container">
         <div className="right-content">

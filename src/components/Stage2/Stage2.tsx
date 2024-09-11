@@ -46,6 +46,8 @@ const Stage2: React.FC<Stage2Props> = ({
           {
             id: "name",
             header: "User Name",
+            minWidth: 100,
+            maxWidth: 100,
             cell: (item) => item.name,
             editConfig: {
               editIconAriaLabel: "editable",
@@ -65,6 +67,8 @@ const Stage2: React.FC<Stage2Props> = ({
           {
             id: "device",
             header: "Device",
+            minWidth: 100,
+            maxWidth: 100,
             cell: (item) => item.device,
             editConfig: {
               editIconAriaLabel: "editable",
@@ -93,6 +97,8 @@ const Stage2: React.FC<Stage2Props> = ({
           {
             id: "activity1",
             header: "Activity 1",
+            minWidth: 100,
+            maxWidth: 100,
             cell: (item) => item.activity1,
             editConfig: {
               editIconAriaLabel: "editable",
@@ -121,6 +127,8 @@ const Stage2: React.FC<Stage2Props> = ({
           {
             id: "activity2",
             header: "Activity 2",
+            minWidth: 100,
+            maxWidth: 100,
             cell: (item) => item.activity2,
             editConfig: {
               editIconAriaLabel: "editable",
@@ -149,6 +157,8 @@ const Stage2: React.FC<Stage2Props> = ({
           {
             id: "activity3",
             header: "Activity 3",
+            minWidth: 100,
+            maxWidth: 100,
             cell: (item) => item.activity3,
             editConfig: {
               editIconAriaLabel: "editable",
@@ -192,7 +202,7 @@ const Stage2: React.FC<Stage2Props> = ({
               </SpaceBetween>
             }
           >
-            2. Calculate your Household usage
+            Household Usage
           </Header>
         }
       />

@@ -57,3 +57,15 @@ export interface SimpleTotalItem {
   down: number;
   up: number;
 }
+
+export interface PeerState {
+  numfiles: number;
+  avgsize: number;
+  usetype: string;
+}
+
+export interface IndPeerState {
+  fName: string;
+  usetype: string;
+  fileSize: number;
+}
