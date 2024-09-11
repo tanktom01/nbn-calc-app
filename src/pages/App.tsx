@@ -138,7 +138,16 @@ const App: React.FC = () => {
                   content: [
                     <>
                       <div className="stageSpace">
-                        <Container>
+                        <Container
+                          header={
+                            <Header
+                              variant="h2"
+                              description="Input the various activitys each user might be engaged with on their device"
+                            >
+                              2. Input your households usage
+                            </Header>
+                          }
+                        >
                           <Stage2
                             selectedItems={selectedItemsStage2}
                             handleSubmit={handleSubmit}
@@ -162,7 +171,10 @@ const App: React.FC = () => {
                     <div className="stageSpace">
                       <Container
                         header={
-                          <Header variant="h2">
+                          <Header
+                            variant="h2"
+                            description="Input your file transfer specifications"
+                          >
                             2. Calculate your File Transfer Usage
                           </Header>
                         }
