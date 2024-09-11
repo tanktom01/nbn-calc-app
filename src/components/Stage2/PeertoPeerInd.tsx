@@ -47,7 +47,9 @@ const PeertoPeerInd: React.FC<IndPtpProps> = ({
       columnDefinitions={[
         {
           id: "fName",
-          header: "Files name",
+          header: "Files Name",
+          minWidth: 100,
+          maxWidth: 100,
           cell: (item) => item.fName,
           editConfig: {
             editIconAriaLabel: "editable",
@@ -69,6 +71,8 @@ const PeertoPeerInd: React.FC<IndPtpProps> = ({
         {
           id: "usetype",
           header: "Use Type",
+          minWidth: 100,
+          maxWidth: 100,
           cell: (item) => item.usetype,
           editConfig: {
             editIconAriaLabel: "editable",
@@ -95,6 +99,8 @@ const PeertoPeerInd: React.FC<IndPtpProps> = ({
         {
           id: "fileSize",
           header: "File Size (GB)",
+          minWidth: 100,
+          maxWidth: 100,
           cell: (item) => item.fileSize,
           editConfig: {
             editIconAriaLabel: "editable",

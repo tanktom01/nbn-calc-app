@@ -40,6 +40,8 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
         {
           id: "numfiles",
           header: "Number of Files",
+          minWidth: 100,
+          maxWidth: 100,
           cell: (item) => item.numfiles,
           editConfig: {
             editIconAriaLabel: "editable",
@@ -70,6 +72,8 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
         {
           id: "usetype",
           header: "Use Type",
+          minWidth: 100,
+          maxWidth: 100,
           cell: (item) => item.usetype,
           editConfig: {
             editIconAriaLabel: "editable",
@@ -96,6 +100,8 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
         {
           id: "avgsize",
           header: "Average File Size (GB)",
+          minWidth: 100,
+          maxWidth: 100,
           cell: (item) => item.avgsize,
           editConfig: {
             editIconAriaLabel: "editable",
