@@ -45,52 +45,18 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
             editIconAriaLabel: "editable",
             editingCell: (item, { currentValue, setValue }) => {
               return (
-                <FormField
-                  errorText={numFilesWarning} // Conditionally display the warning
-                >
+                <FormField errorText={numFilesWarning}>
                   <Input
                     autoFocus={true}
                     value={currentValue ?? item.numfiles}
                     onChange={(event) => {
                       const value = event.detail.value;
-                      // Check if the input is a valid number
+
                       if (isNaN(Number(value)) || Number(value) < 0) {
                         setNumFilesWarning("User has not input a valid number");
                         setDisableSubmit(true);
                       } else {
-                        setNumFilesWarning(null); // Clear the warning if valid
-                        setDisableSubmit(false);
-                        setValue(value);
-                      }
-                    }}
-                  />
-                </FormField>
-              );
-            },
-          },
-        },
-        {
-          id: "avgsize",
-          header: "Average Size (GB)",
-          cell: (item) => item.avgsize,
-          editConfig: {
-            editIconAriaLabel: "editable",
-            editingCell: (item, { currentValue, setValue }) => {
-              return (
-                <FormField
-                  errorText={numFilesWarning} // Conditionally display the warning
-                >
-                  <Input
-                    autoFocus={true}
-                    value={currentValue ?? item.avgsize}
-                    onChange={(event) => {
-                      const value = event.detail.value;
-                      // Check if the input is a valid number
-                      if (isNaN(Number(value)) || Number(value) < 0) {
-                        setNumFilesWarning("User has not input a valid number");
-                        setDisableSubmit(true);
-                      } else {
-                        setNumFilesWarning(null); // Clear the warning if valid
+                        setNumFilesWarning(null);
                         setDisableSubmit(false);
                         setValue(value);
                       }
@@ -127,6 +93,36 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
             },
           },
         },
+        {
+          id: "avgsize",
+          header: "Average File Size (GB)",
+          cell: (item) => item.avgsize,
+          editConfig: {
+            editIconAriaLabel: "editable",
+            editingCell: (item, { currentValue, setValue }) => {
+              return (
+                <FormField errorText={numFilesWarning}>
+                  <Input
+                    autoFocus={true}
+                    value={currentValue ?? item.avgsize}
+                    onChange={(event) => {
+                      const value = event.detail.value;
+
+                      if (isNaN(Number(value)) || Number(value) < 0) {
+                        setNumFilesWarning("User has not input a valid number");
+                        setDisableSubmit(true);
+                      } else {
+                        setNumFilesWarning(null);
+                        setDisableSubmit(false);
+                        setValue(value);
+                      }
+                    }}
+                  />
+                </FormField>
+              );
+            },
+          },
+        },
       ]}
       header={
         <Header
@@ -145,7 +141,7 @@ const PeerToPeerTable: React.FC<PtpProps> = ({
             </SpaceBetween>
           }
         >
-          Peer to Peer Calculator
+          Bulk File Calculator
         </Header>
       }
     />

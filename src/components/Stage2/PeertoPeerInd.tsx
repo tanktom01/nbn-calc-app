@@ -94,7 +94,7 @@ const PeertoPeerInd: React.FC<IndPtpProps> = ({
         },
         {
           id: "fileSize",
-          header: "File Size",
+          header: "File Size (GB)",
           cell: (item) => item.fileSize,
           editConfig: {
             editIconAriaLabel: "editable",
@@ -142,7 +142,7 @@ const PeertoPeerInd: React.FC<IndPtpProps> = ({
             </SpaceBetween>
           }
         >
-          Peer to Peer Calculator
+          Individual File Calculator
         </Header>
       }
     />
