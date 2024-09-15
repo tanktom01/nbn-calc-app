@@ -17,6 +17,10 @@
 .stageSpace {
   padding-bottom: 20px;
 }
+.stageSpace2 {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
 
 /* Media query for screens smaller than 768px */
 @media (max-width: 768px) {

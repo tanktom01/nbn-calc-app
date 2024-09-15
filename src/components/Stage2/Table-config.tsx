@@ -1,5 +1,4 @@
 export const usageType = [
-  { label: "-", value: "1" },
   { label: "Download", value: "1" },
   { label: "Upload", value: "1" },
 ];

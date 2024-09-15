@@ -80,7 +80,7 @@ const App: React.FC = () => {
   const handleSubmitPeerJob = (
     currentItem: PeerState,
     column: Column,
-    value: string | number
+    value: number
   ) => {
     const newItem = { ...currentItem, [column.id]: value };
     const updatedItems = peerJob.map((item) =>
@@ -96,7 +96,7 @@ const App: React.FC = () => {
 
   //Ind File Transfer Table
   const [peerIndJob, setPeerIndJob] = useState<IndPeerState[]>([
-    { fName: "PDF", usetype: "-", fileSize: 0 },
+    { fName: "PDF", usetype: "Download", fileSize: 0 },
   ]);
 
   const handleSubmitIndPeerJob = (
@@ -112,7 +112,7 @@ const App: React.FC = () => {
   };
 
   const handleCreateIndPeerJob = () => {
-    const newIndJob = { fName: "PDF", usetype: "-", fileSize: 0 };
+    const newIndJob = { fName: "PDF", usetype: "Download", fileSize: 0 };
     setPeerIndJob([...peerIndJob, newIndJob]);
   };
 
@@ -169,48 +169,87 @@ const App: React.FC = () => {
                   id: "seg-2",
                   content: [
                     <div className="stageSpace">
-                      <Container
-                        header={
-                          <Header
-                            variant="h2"
-                            description="Input your file transfer specifications"
-                          >
-                            2. Calculate your File Transfer Usage
-                          </Header>
-                        }
-                      >
-                        <SegmentedControl
-                          selectedId={fileId}
-                          label="Calculation Option"
-                          onChange={({ detail }) => {
-                            setFileId(detail.selectedId);
-                          }}
-                          options={[
-                            { text: "Bulk", id: "Fileseg-1" },
-                            { text: "Individual", id: "Fileseg-2" },
-                          ]}
-                        />
-                        {fileId === "Fileseg-1" ? (
-                          <div className="peerContainer">
-                            <PeerToPeerTable
-                              selectedItems={peerJob}
-                              handleSubmit={handleSubmitPeerJob}
-                              handleCreateJob={handleCreatePeerJob}
-                            />
+                      <SegmentedControl
+                        selectedId={fileId}
+                        label="Calculation Option"
+                        onChange={({ detail }) => {
+                          setFileId(detail.selectedId);
+                        }}
+                        options={[
+                          { text: "Bulk", id: "Fileseg-1" },
+                          { text: "Individual", id: "Fileseg-2" },
+                        ]}
+                      />
+
+                      {fileId === "Fileseg-1" ? (
+                        <>
+                          <div className="stageSpace">
+                            <Container
+                              header={
+                                <Header
+                                  variant="h2"
+                                  description="Input your file transfer specifications"
+                                >
+                                  2. Calculate your File Transfer Usage
+                                </Header>
+                              }
+                            >
+                              <div className="peerContainer">
+                                <PeerToPeerTable
+                                  selectedItems={peerJob}
+                                  handleSubmit={handleSubmitPeerJob}
+                                  handleCreateJob={handleCreatePeerJob}
+                                />
+                              </div>
+                            </Container>
                           </div>
-                        ) : (
-                          <div className="peerContainer">
-                            <PeertoPeerInd
-                              selectedItems={peerIndJob}
-                              handleSubmit={handleSubmitIndPeerJob}
-                              handleCreateJob={handleCreateIndPeerJob}
-                            />
+                          <div className="stageSpace">
+                            <Container
+                              header={<Header>3. Check out your usage</Header>}
+                            >
+                              <FileTransfer
+                                peerJob={peerJob}
+                                selectedPlan={selectedItemsStage1}
+                                segment={fileId}
+                              />
+                            </Container>
                           </div>
-                        )}
-                      </Container>
-                      <Container>
-                        <FileTransfer />
-                      </Container>
+                        </>
+                      ) : (
+                        <>
+                          <div className="stageSpace">
+                            <Container
+                              header={
+                                <Header
+                                  variant="h2"
+                                  description="Input your file transfer specifications"
+                                >
+                                  2. Calculate your File Transfer Usage
+                                </Header>
+                              }
+                            >
+                              <div className="peerContainer">
+                                <PeertoPeerInd
+                                  selectedItems={peerIndJob}
+                                  handleSubmit={handleSubmitIndPeerJob}
+                                  handleCreateJob={handleCreateIndPeerJob}
+                                />
+                              </div>
+                            </Container>
+                          </div>
+                          <div className="stageSpace">
+                            <Container
+                              header={<Header>3. Check out your usage</Header>}
+                            >
+                              <FileTransfer
+                                peerIndJob={peerIndJob}
+                                selectedPlan={selectedItemsStage1}
+                                segment={fileId}
+                              />
+                            </Container>
+                          </div>
+                        </>
+                      )}
                     </div>,
                   ],
                 },
