@@ -128,7 +128,7 @@ const FileTransfer: React.FC<FileTransferProps> = ({
             </Header>
           }
         >
-          <Grid gridDefinition={[{ colspan: 3 }, { colspan: 10 }]}>
+          <Grid gridDefinition={[{ colspan: 5 }, { colspan: 8 }]}>
             <FormField label="Plan Utilisation">
               <Slider
                 onChange={({ detail }) => setValue(detail.value)}
